@@ -15,22 +15,25 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name'              => 'Administrator',
-            'username'          => 'administrator',
-            'email'             => 'administrator@gmail.com',
-            'password'          => Hash::make(123),
-            'email_verified_at' => now(),
-            'remember_token'    => Str::random(10),
-        ]);
 
-        User::create([
-            'name'              => 'Admin',
-            'username'          => 'admin',
-            'email'             => 'admin@gmail.com',
-            'password'          => Hash::make(123),
-            'email_verified_at' => now(),
-            'remember_token'    => Str::random(10),
-        ]);
+        $users      = ['administrator', 'admin', 'user'];
+
+        $default    = [
+            // 'email_verified_at' => now(),
+            'password'          => Hash::make('123'),
+            // 'remember_token'    => Str::random(10)
+        ];
+
+        foreach ($users as $value) {
+            User::create(
+                [...$default, ...[
+                    'name'              => ucwords($value),
+                    'username'          => $value,
+                    'email'             => $value . '@gmail.com',
+
+                ]]
+            )->assignRole($value);
+        }
+
     }
 }
