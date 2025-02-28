@@ -4,6 +4,7 @@
 
 <head>
     <base href="{{ url('/') }}" />
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Startup | Build by HC') }}</title>
     <meta charset="utf-8" />
     <meta name="description"
@@ -23,8 +24,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used for this page only)-->
-    <link href="{{ asset('/') }}backend/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
-        type="text/css" />
+    {{-- <link href="{{ asset('/') }}backend/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
+        type="text/css" /> --}}
+
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.2/css/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/staterestore/1.4.1/css/stateRestore.bootstrap5.css">
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="{{ asset('/') }}backend/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
@@ -547,12 +554,22 @@
     <script>
         var hostUrl = "{{ asset('/') }}backend/assets/";
     </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="{{ asset('/') }}backend/assets/plugins/global/plugins.bundle.js"></script>
     <script src="{{ asset('/') }}backend/assets/js/scripts.bundle.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="{{ asset('/') }}backend/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    {{-- <script src="{{ asset('/') }}backend/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/staterestore/1.4.1/js/dataTables.stateRestore.js"></script>
+    <script src="https://cdn.datatables.net/staterestore/1.4.1/js/stateRestore.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.bootstrap5.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
     <script src="{{ asset('/') }}backend/assets/js/widgets.bundle.js"></script>
@@ -562,8 +579,15 @@
     <script src="{{ asset('/') }}backend/assets/js/custom/utilities/modals/create-campaign.js"></script>
     <script src="{{ asset('/') }}backend/assets/js/custom/utilities/modals/create-app.js"></script>
     <script src="{{ asset('/') }}backend/assets/js/custom/utilities/modals/users-search.js"></script>
+
+    <script src="{{ asset('/') }}backend/assets/js/main.js"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
+
+    <script>
+        const dtindoUrl = "{{ asset('assets/dtindo.json') }}";
+    </script>
+
 
     @stack('js')
 </body>

@@ -96,3 +96,20 @@ if (!function_exists('filterKata')) {
         return $nama;
     }
 }
+
+if (!function_exists('user')) {
+
+    /**
+     * @param string $id
+     * @return \App\Models\User | string
+     */
+
+    function user($id = null)
+    {
+        if ($id) {
+            return request()->user()->{$id};
+        }
+
+        return request()->user();
+    }
+}

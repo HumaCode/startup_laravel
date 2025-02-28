@@ -16,7 +16,7 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
-        $mm = Menu::firstOrCreate(['url' => 'konfigurasi'], ['name' => 'konfigurasi', 'category' => 'MASTER DATA', 'icon' => 'ki-element-11']);
+        $mm = Menu::firstOrCreate(['url' => 'konfigurasi'], ['name' => 'konfigurasi', 'category' => 'KONFIGURASI', 'icon' => 'ki-element-11']);
         $this->attachMenupermission($mm, ['read'], ['admin']);
 
         $sm = $mm->subMenus()->create(['name' => 'Menu', 'url' => $mm->url . '/menu',  'category' => $mm->category]);

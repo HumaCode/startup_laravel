@@ -1,0 +1,18 @@
+{
+    "sEmptyTable": "Tidak ada data yang tersedia pada tabel",
+    "sProcessing": "Sedang memproses...",
+    "sLengthMenu": "Tampilkan _MENU_ data",
+    "sZeroRecords": "Tidak ditemukan data yang sesuai",
+    "sInfo": "Tampil _START_ sampai _END_ dari _TOTAL_ data",
+    "sInfoEmpty": "Tampil 0 sampai 0 dari 0 data",
+    "sInfoFiltered": "(disaring dari _MAX_ total data)",
+    "sInfoPostFix": "",
+    "sSearch": "Cari:",
+    "sUrl": "",
+    "oPaginate": {
+        "sFirst": "Pertama",
+        "sPrevious": "<-",
+        "sNext": "->",
+        "sLast": "Terakhir"
+    }
+}
