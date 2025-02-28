@@ -21,5 +21,14 @@ class MenuSeeder extends Seeder
 
         $sm = $mm->subMenus()->create(['name' => 'Menu', 'url' => $mm->url . '/menu',  'category' => $mm->category]);
         $this->attachMenupermission($sm, null, ['admin']);
+
+        $sm = $mm->subMenus()->create(['name' => 'Akses Role', 'url' => $mm->url . '/akses-role',  'category' => $mm->category]);
+        $this->attachMenupermission($sm, null, ['admin']);
+
+        $sm = $mm->subMenus()->create(['name' => 'User', 'url' => $mm->url . '/users',  'category' => $mm->category]);
+        $this->attachMenupermission($sm, null, ['admin']);
+
+        $mm = Menu::firstOrCreate(['url' => 'Content'], ['name' => 'Content', 'category' => 'CONTENT', 'icon' => 'ki-element-11']);
+        $this->attachMenupermission($mm, ['read'], ['admin']);
     }
 }
