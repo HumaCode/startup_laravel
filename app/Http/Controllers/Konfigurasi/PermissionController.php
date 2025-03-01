@@ -3,23 +3,22 @@
 namespace App\Http\Controllers\Konfigurasi;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Konfigurasi\RoleRequest;
-use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     private $title          = 'Konfigurasi';
-    private $subtitle       = 'Role Manajemen';
-    private $formView       = 'pages.konfigurasi.roles.roles-form';
-    private $indexView      = 'pages.konfigurasi.roles.roles';
-    private $urlStore       = 'konfigurasi.roles.store';
-    private $urlUpdate      = 'konfigurasi.roles.update';
-    private $urlLink        = 'konfigurasi.roles.index';
-    private $urlData        = 'konfigurasi.roles.data';
-    private $tabel          = 'tableroles';
+    private $subtitle       = 'Permission Manajemen';
+    private $formView       = 'pages.konfigurasi.permission.permission-form';
+    private $indexView      = 'pages.konfigurasi.permission.permission';
+    private $urlStore       = 'konfigurasi.permission.store';
+    private $urlUpdate      = 'konfigurasi.permissions.update';
+    private $urlLink        = 'konfigurasi.permissions.index';
+    private $urlData        = 'konfigurasi.permissions.data';
+    private $tabel          = 'tablepermission';
 
     /**
      * Display a listing of the resource.
@@ -39,32 +38,32 @@ class RoleController extends Controller
 
     public function getData(Request $request)
     {
-        Gate::authorize('read konfigurasi/roles');
+        Gate::authorize('read konfigurasi/permissions');
 
         // Ambil query pencarian
         $search = $request->input('search');
 
         // Menggunakan eloquent untuk mendukung server-side processing
-        $roles   = Role::orderBy('id', 'DESC');
+        $permission   = Permission::orderBy('id', 'DESC');
 
         // Filter berdasarkan pencarian jika ada
         if (!empty($search)) {
             $search = strtolower($search);
 
             // Pencarian untuk kolom lain
-            $roles->where('name', 'like', "%{$search}%");
+            $permission->where('name', 'like', "%{$search}%");
         }
 
 
-        return DataTables::eloquent($roles)
+        return DataTables::eloquent($permission)
             ->addColumn('action', function ($row) {
 
                 $routes = [
-                    'edit' => route('konfigurasi.roles.edit', $row->id),
-                    'hapus' => route('konfigurasi.roles.destroy', $row->id)
+                    'edit' => route('konfigurasi.permissions.edit', $row->id),
+                    'hapus' => route('konfigurasi.permissions.destroy', $row->id)
                 ];
 
-                $actions = $this->generateButtons('konfigurasi/roles', $routes);
+                $actions = $this->generateButtons('konfigurasi/permissions', $routes);
 
                 return '<center>' . $actions . '</center>';
             })
@@ -76,23 +75,17 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Role $role)
+    public function create()
     {
-        return view($this->formView, [
-            'action'    => route($this->urlStore),
-            'data'      => $role,
-        ]);
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RoleRequest $request, Role $role)
+    public function store(Request $request)
     {
-        $role  = new Role($request->validated());
-        $role->save();
-
-        return responseSuccess();
+        //
     }
 
     /**
@@ -106,32 +99,24 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role)
+    public function edit(string $id)
     {
-        return view($this->formView, [
-            'action'    => route($this->urlUpdate, $role->id),
-            'data'      => $role,
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(RoleRequest $request, Role $role)
+    public function update(Request $request, string $id)
     {
-        $role->fill($request->validated());
-        $role->save();
-
-        return responseSuccess(true);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy(string $id)
     {
-        $role->delete();
-
-        return responseSuccessDelete();
+        //
     }
 }

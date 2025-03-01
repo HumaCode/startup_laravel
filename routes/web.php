@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Konfigurasi\MenuController;
+use App\Http\Controllers\Konfigurasi\PermissionController;
 use App\Http\Controllers\Konfigurasi\RoleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CekUserLogin;
@@ -25,6 +26,10 @@ Route::middleware([CekUserLogin::class])->group(function () {
         // roles
         Route::post('roles/data', [RoleController::class, 'getData'])->name('roles.data');
         Route::resource('roles', RoleController::class);
+
+        // permission
+        Route::post('permissions/data', [PermissionController::class, 'getData'])->name('permissions.data');
+        Route::resource('permissions', PermissionController::class);
     });
 });
 
