@@ -23,7 +23,7 @@ class MenuController extends Controller
     private $urlStore       = 'konfigurasi.menu.store';
     private $urlUpdate      = 'konfigurasi.menu.update';
     private $urlLink        = 'konfigurasi.menu.index';
-    private $urlData        = 'konfigurasi.roles.data';
+    private $urlData        = 'konfigurasi.menu.data';
     private $tabel          = 'tablemenu';
 
     public function __construct(private MenuRepository $repository)
