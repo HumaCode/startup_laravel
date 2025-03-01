@@ -18,6 +18,8 @@ class MenuController extends Controller
     private $subtitle       = 'Menu Manajemen';
     private $formView       = 'pages.konfigurasi.menu.menu-form';
     private $indexView      = 'pages.konfigurasi.menu.menu';
+    private $urlStore       = 'konfigurasi.menu.store';
+    private $urlUpdate      = 'konfigurasi.menu.update';
     private $tabel          = 'tablemenu';
 
     public function __construct(private MenuRepository $repository)
@@ -83,7 +85,7 @@ class MenuController extends Controller
     public function create(Menu $menu)
     {
         return view($this->formView, [
-            'action'    => route('konfigurasi.menu.store'),
+            'action'    => route($this->urlStore),
             'data'      => $menu,
             'mainMenus' => $this->repository->getMainMenus(),
         ]);
@@ -128,23 +130,39 @@ class MenuController extends Controller
      */
     public function show(string $id)
     {
-        //
+        abort(403, 'Unauthorized');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Menu $menu)
     {
-        //
+        return view($this->formView, [
+            'action'        => route($this->urlUpdate, $menu->id),
+            'data'          => $menu,
+            'mainMenus'     => $this->repository->getMainMenus(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MenuRequest $request, Menu $menu)
     {
-        //
+        $menu->fill($request->validated());
+        $menu->fill([
+            'orders'            => $request->orders,
+            'icon'              => $request->icon,
+            'category'          => $request->category,
+        ]);
+
+        if ($request->level_menu == 'main_menu') {
+            $menu->main_menu_id = null;
+        }
+        $menu->save();
+
+        return responseSuccess(true);
     }
 
     /**
@@ -152,6 +170,6 @@ class MenuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        abort(403, 'Unauthorized');
     }
 }

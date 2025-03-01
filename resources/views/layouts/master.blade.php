@@ -72,40 +72,36 @@
     <div class="d-flex flex-column flex-root">
         <div class="page d-flex flex-row flex-column-fluid">
             <!--begin::Wrapper-->
-            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <div class="wrapper d-flex flex-column flex-row-fluid uiaaaauiaaaauii" id="kt_wrapper">
 
                 <!--begin::Header-->
                 @include('layouts.header')
                 <!--end::Header-->
 
-                <div class="uiaaaauiaaaauii">
-                    @if (isset($toolbar))
-                        <!--begin::Toolbar-->
-                        <div class="toolbar py-3 py-lg-6" id="kt_toolbar">
-                            <!--begin::Container-->
-                            {{ $toolbar }}
-                            <!--end::Container-->
-                        </div>
-                        <!--end::Toolbar-->
-                    @endif
 
-                    <!--begin::Container-->
-                    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+                @if (isset($toolbar))
+                    <!--begin::Toolbar-->
+                    <div class="toolbar py-3 py-lg-6" id="kt_toolbar">
+                        <!--begin::Container-->
+                        {{ $toolbar }}
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Toolbar-->
+                @endif
 
-                        <!--begin::Post-->
-                        <div class="content flex-row-fluid ">
+                <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+                    <!--begin::Post-->
+                    <div class="content flex-row-fluid" id="kt_content">
 
-                            <div class="modal fade" tabindex="-1" id="modal_action"></div>
+                        <div class="modal fade" tabindex="-1" id="modal_action"></div>
 
-                            <!--begin::Card-->
-                            {{ $slot }}
-                            <!--end::Card-->
-                        </div>
-                        <!--end::Post-->
+
+                        {{ $slot }}
 
                     </div>
-                    <!--end::Container-->
+                    <!--end::Post-->
                 </div>
+
                 <!--begin::Footer-->
                 @include('layouts.footer')
                 <!--end::Footer-->
