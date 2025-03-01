@@ -278,80 +278,48 @@
                                 </div>
                                 <!--end:Menu item-->
 
+                                @foreach (menus()->flatMap(fn($item) => $item) as $mm)
+                                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                                        data-kt-menu-placement="bottom-start"
+                                        class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
 
-                                <!--begin:Menu item-->
-                                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                                    data-kt-menu-placement="bottom-start"
-                                    class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
-                                    <!--begin:Menu link-->
-                                    <span class="menu-link py-3">
-                                        <span class="menu-title">Apps</span>
-                                        <span class="menu-arrow d-lg-none"></span>
-                                    </span>
-                                    <!--end:Menu link-->
-
-                                    <!--begin:Menu sub-->
-                                    <div
-                                        class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-250px">
-                                        <!--begin:Menu item-->
-                                        <div data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-                                            data-kt-menu-placement="right-start"
-                                            class="menu-item menu-lg-down-accordion">
-                                            <!--begin:Menu link-->
-                                            <span class="menu-link py-3">
-                                                <span class="menu-icon">
-                                                    <i class="ki-duotone ki-rocket fs-2">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="menu-title">Projects</span>
-                                                <span class="menu-arrow"></span>
+                                        @if (count($mm->subMenus))
+                                            <span @class([
+                                                'menu-link',
+                                                'py-3',
+                                                'active' => str_contains(request()->path(), $mm->url),
+                                            ])>
+                                                {{ $mm->name }}
                                             </span>
-                                            <!--end:Menu link-->
-                                            <!--begin:Menu sub-->
-                                            <div
-                                                class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-active-bg px-lg-2 py-lg-4 w-lg-225px">
-                                                <!--begin:Menu item-->
-                                                <div class="menu-item">
-                                                    <!--begin:Menu link-->
-                                                    <a class="menu-link py-3" href="apps/projects/list.html">
-                                                        <span class="menu-bullet">
-                                                            <span class="bullet bullet-dot"></span>
-                                                        </span>
-                                                        <span class="menu-title">My Projects</span>
-                                                    </a>
-                                                    <!--end:Menu link-->
-                                                </div>
-                                                <!--end:Menu item-->
-                                            </div>
-                                            <!--end:Menu sub-->
-                                        </div>
-                                        <!--end:Menu item-->
 
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="apps/calendar.html">
-                                                <span class="menu-icon">
-                                                    <i class="ki-duotone ki-calendar-8 fs-2">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                        <span class="path4"></span>
-                                                        <span class="path5"></span>
-                                                        <span class="path6"></span>
-                                                    </i>
-                                                </span>
-                                                <span class="menu-title">Calendar</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                        <!--end:Menu item-->
+                                            <div
+                                                class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-250px">
+                                                @foreach ($mm->subMenus as $submenu)
+                                                    <div class="menu-item">
+                                                        <a @class([
+                                                            'menu-link',
+                                                            'py-3',
+                                                            'active' => str_contains(request()->path(), $submenu->url),
+                                                        ])
+                                                            href="{{ url($submenu->url) }}">
+                                                            <span class="menu-icon">
+                                                                <i class="ki-outline ki-element-11"></i>
+                                                            </span>
+                                                            {{ $submenu->name }}
+                                                        </a>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <div class="menu-item">
+                                                <a class="menu-link py-3" href="{{ url($mm->url) }}">
+                                                    {{ $mm->name }}
+                                                </a>
+                                            </div>
+                                        @endif
+
                                     </div>
-                                    <!--end:Menu sub-->
-                                </div>
-                                <!--end:Menu item-->
+                                @endforeach
 
                             </div>
                             <!--end::Menu-->
