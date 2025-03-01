@@ -5,7 +5,7 @@ use App\Http\Controllers\Konfigurasi\MenuController;
 use App\Http\Controllers\Konfigurasi\PermissionController;
 use App\Http\Controllers\Konfigurasi\RoleController;
 use App\Http\Controllers\Konfigurasi\UserController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Setting\ProfileController;
 use App\Http\Middleware\CekUserLogin;
 use Illuminate\Support\Facades\Route;
 
@@ -45,10 +45,12 @@ Route::middleware([CekUserLogin::class])->group(function () {
     });
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+
+    // profile
+    Route::post('profil/ubah-password/{id}', [ProfileController::class, 'ubahPassword'])->name('update-password.user');
+    Route::post('profil/update/{id}', [ProfileController::class, 'updateData'])->name('update-data.user');
+    Route::resource('profil', ProfileController::class);
 });
 
 require __DIR__ . '/auth.php';

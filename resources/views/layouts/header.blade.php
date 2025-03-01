@@ -172,7 +172,6 @@
                                 null,
                                 [
                                     'alt' => 'User Avatar',
-                                    'id' => 'showImage',
                                 ],
                                 true,
                                 '100px',
