@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Konfigurasi\MenuController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\CekUserLogin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,12 +13,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::group(['prefix' => 'konfigurasi', 'as' => 'konfigurasi.'], function () {
+Route::middleware([CekUserLogin::class])->group(function () {
+    Route::group(['prefix' => 'konfigurasi', 'as' => 'konfigurasi.'], function () {
 
-    // menu
-    Route::put('menu/sort', [MenuController::class, 'sort'])->name('menu.sort');
-    Route::post('menu/data', [MenuController::class, 'getData'])->name('menu.data');
-    Route::resource('menu', MenuController::class);
+        // menu
+        Route::put('menu/sort', [MenuController::class, 'sort'])->name('menu.sort');
+        Route::post('menu/data', [MenuController::class, 'getData'])->name('menu.data');
+        Route::resource('menu', MenuController::class);
+    });
 });
 
 Route::middleware('auth')->group(function () {
