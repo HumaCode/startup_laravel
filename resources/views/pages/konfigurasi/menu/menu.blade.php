@@ -111,10 +111,13 @@
             </div>
             <!--end::Page title-->
             <!--begin::Actions-->
-            <div class="d-flex align-items-center">
-                <a href="#" class="btn btn-sm btn-light-primary">
-                    <i class="ki-duotone ki-plus fs-2"></i>Tambah Menu</a>
-            </div>
+
+            @can('create konfigurasi/menu')
+                <div class="d-flex align-items-center">
+                    <a href="{{ route('konfigurasi.menu.create') }}" class="btn btn-sm btn-light-primary action">
+                        <i class="ki-duotone ki-plus fs-2"></i>Tambah Menu</a>
+                </div>
+            @endcan
             <!--end::Actions-->
         </div>
 

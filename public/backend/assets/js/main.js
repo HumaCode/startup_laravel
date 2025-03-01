@@ -160,7 +160,7 @@ function showToast(status = 'success', message) {
 }
 
 function handleAction(datatable, onShowAction, onSuccessAction) {
-    $('.cienyariyah').on('click', '.action', function (e) {
+    $('.uiaaaauiaaaauii').on('click', '.action', function (e) {
         e.preventDefault();
 
         handleAjax(this.href)

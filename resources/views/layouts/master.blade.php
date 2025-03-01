@@ -36,6 +36,7 @@
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="{{ asset('/') }}backend/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/') }}backend/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/') }}backend/assets/css/iziToast.min.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
     <script>
         // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }
@@ -77,30 +78,34 @@
                 @include('layouts.header')
                 <!--end::Header-->
 
-                @if (isset($toolbar))
-                    <!--begin::Toolbar-->
-                    <div class="toolbar py-3 py-lg-6" id="kt_toolbar">
-                        <!--begin::Container-->
-                        {{ $toolbar }}
-                        <!--end::Container-->
+                <div class="uiaaaauiaaaauii">
+                    @if (isset($toolbar))
+                        <!--begin::Toolbar-->
+                        <div class="toolbar py-3 py-lg-6" id="kt_toolbar">
+                            <!--begin::Container-->
+                            {{ $toolbar }}
+                            <!--end::Container-->
+                        </div>
+                        <!--end::Toolbar-->
+                    @endif
+
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+
+                        <!--begin::Post-->
+                        <div class="content flex-row-fluid ">
+
+                            <div class="modal fade" tabindex="-1" id="modal_action"></div>
+
+                            <!--begin::Card-->
+                            {{ $slot }}
+                            <!--end::Card-->
+                        </div>
+                        <!--end::Post-->
+
                     </div>
-                    <!--end::Toolbar-->
-                @endif
-
-                <!--begin::Container-->
-                <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
-
-                    <!--begin::Post-->
-                    <div class="content flex-row-fluid" id="kt_content">
-                        <!--begin::Card-->
-                        {{ $slot }}
-                        <!--end::Card-->
-                    </div>
-                    <!--end::Post-->
-
+                    <!--end::Container-->
                 </div>
-                <!--end::Container-->
-
                 <!--begin::Footer-->
                 @include('layouts.footer')
                 <!--end::Footer-->
@@ -559,6 +564,9 @@
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="{{ asset('/') }}backend/assets/plugins/global/plugins.bundle.js"></script>
     <script src="{{ asset('/') }}backend/assets/js/scripts.bundle.js"></script>
+
+    {{-- izitoast --}}
+    <script src="{{ asset('/') }}backend/assets/js/iziToast.min.js"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
     {{-- <script src="{{ asset('/') }}backend/assets/plugins/custom/datatables/datatables.bundle.js"></script> --}}
@@ -588,6 +596,36 @@
         const dtindoUrl = "{{ asset('assets/dtindo.json') }}";
     </script>
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                iziToast.error({
+                    title: '',
+                    position: 'topRight',
+                    message: '{{ $error }}',
+                });
+            </script>
+        @endforeach
+    @endif
+
+    @if (session()->get('error'))
+        <script>
+            iziToast.error({
+                position: 'topRight',
+                message: '{{ session()->get('error') }}',
+            });
+        </script>
+    @endif
+
+
+    @if (session()->get('success'))
+        <script>
+            iziToast.success({
+                position: 'topRight',
+                message: '{{ session()->get('success') }}',
+            });
+        </script>
+    @endif
 
     @stack('js')
 </body>
