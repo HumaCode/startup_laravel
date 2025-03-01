@@ -106,24 +106,32 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        return view($this->formView, [
+            'action'    => route($this->urlUpdate, $role->id),
+            'data'      => $role,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(RoleRequest $request, Role $role)
     {
-        //
+        $role->fill($request->validated());
+        $role->save();
+
+        return responseSuccess(true);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return responseSuccessDelete();
     }
 }
