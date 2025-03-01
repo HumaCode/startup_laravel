@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Konfigurasi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Konfigurasi\RoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -75,17 +76,23 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Role $role)
     {
-        //
+        return view($this->formView, [
+            'action'    => route($this->urlStore),
+            'data'      => $role,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request, Role $role)
     {
-        //
+        $role  = new Role($request->validated());
+        $role->save();
+
+        return responseSuccess();
     }
 
     /**

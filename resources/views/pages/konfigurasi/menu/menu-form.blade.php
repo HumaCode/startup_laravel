@@ -1,4 +1,4 @@
-<x-form.modal title="Form Menu" action="{{ $action }}">
+<x-form.modal title="Form Menu" action="{{ $action ?? null }}">
 
     @if ($data->id)
         @method('put')
