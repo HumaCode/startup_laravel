@@ -92,9 +92,9 @@
                         <span class="text-muted mt-1 fw-semibold fs-7">Data {{ $subtitle }}</span>
                     </h3>
                     <div class="card-toolbar">
-                        @can('create konfigurasi/roles')
+                        @can('create konfigurasi/permissions')
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('konfigurasi.roles.create') }}"
+                                <a href="{{ route('konfigurasi.permissions.create') }}"
                                     class="btn btn-sm btn-light-primary hover-scale action">
                                     <i class="ki-duotone ki-plus fs-2"></i>Tambah</a>
                             </div>
