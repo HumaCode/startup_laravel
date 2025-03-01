@@ -34,4 +34,9 @@ class Menu extends Model
     {
         return $this->belongsToMany(Permission::class, 'menu_permission', 'menu_id', 'permission_id');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
 }
