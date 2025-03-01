@@ -42,4 +42,28 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relasi ke administrator yang mendaftarkan user
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'type_daftar');
+    }
+
+    // Mendapatkan nama admin atau "Mendaftar Mandiri"
+    public function getPendaftarAttribute()
+    {
+        return $this->type_daftar == 0 ? 'Mendaftar Mandiri' : 'Didaftarkan Oleh ' . optional($this->admin)->name;
+    }
+
+    // Scope untuk menampilkan role user
+    public function scopeWithUserRole($query)
+    {
+        return $query->with('roles:name'); // Ambil hanya nama role
+    }
+
+    // Akses nama role secara langsung di model
+    public function getUserRoleAttribute()
+    {
+        return $this->roles->pluck('name')->implode(', '); // Gabungkan jika lebih dari satu
+    }
 }

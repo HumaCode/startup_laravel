@@ -20,6 +20,12 @@ class CekUserLogin
             return redirect('/login')->with('error', 'Anda harus login terlebih dahulu.');
         }
 
+        // Cek apakah user tidak aktif (is_active = 0)
+        if (Auth::user()->is_active == 0) {
+            Auth::logout(); // Logout paksa
+            return redirect('/login')->with('error', 'Akun Anda sudah tidak aktif.');
+        }
+
         return $next($request);
     }
 }

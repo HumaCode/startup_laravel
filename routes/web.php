@@ -39,7 +39,7 @@ Route::middleware([CekUserLogin::class])->group(function () {
         Route::resource('akses-role', AksesRoleController::class)->except('create', 'store', 'delete')->parameters(['akses-role' => 'role']);
 
         // users
-        Route::get('users/{id}', [UserController::class, 'aktivasiUser'])->name('aktivasi.user');
+        Route::get('user/{id}', [UserController::class, 'aktivasiUser'])->name('aktivasi.user');
         Route::post('users/data', [UserController::class, 'getData'])->name('users.data');
         Route::resource('users', UserController::class);
     });

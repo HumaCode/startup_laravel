@@ -5,10 +5,11 @@ $.ajaxSetup({
 })
 
 function select2Init() {
-    $('.select3').select2({
-        // dropdownParent: $('.select3').parents('.modal-content'),
-        // // theme: 'bootstrap-5',
-        allowClear: true
+    $('.select3').each(function () {
+        $(this).select2({
+            dropdownParent: $(this).closest('.modal'),
+            allowClear: true
+        });
     });
 }
 

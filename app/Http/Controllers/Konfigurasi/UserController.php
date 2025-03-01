@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Konfigurasi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Konfigurasi\UserRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -15,6 +18,7 @@ class UserController extends Controller
     private $subtitle       = 'User Manajemen';
     private $formView       = 'pages.konfigurasi.users.users-form';
     private $indexView      = 'pages.konfigurasi.users.users';
+    private $detailView     = 'pages.konfigurasi.users.detail';
     private $urlStore       = 'konfigurasi.users.store';
     private $urlUpdate      = 'konfigurasi.users.update';
     private $urlLink        = 'konfigurasi.users.index';
@@ -220,46 +224,92 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view($this->formView, [
+            'action'    => route($this->urlStore),
+            'data'      => new User(),
+            'roles'     => Role::get()->pluck('name'),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request, User $user)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $user->fill($request->only(['name', 'email', 'username']));
+            $user->password         = bcrypt($request->password);
+            $user->is_active        = '1';
+            $user->type_daftar      = user('id');
+            $user->save();
+
+            $user->assignRole($request->roles);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return responseError($th);
+        }
+
+        return responseSuccess();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view($this->detailView, [
+            'data'      => $user,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view($this->formView, [
+            'action'    => route($this->urlUpdate, $user->id),
+            'data'      => $user,
+            'roles'     => Role::get()->pluck('name'),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $user->fill($request->only(['name', 'email', 'username']));
+            $user->password = bcrypt($request->password);
+            $user->save();
+
+            $user->syncRoles($request->roles);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return responseError($th);
+        }
+
+        return responseSuccess(true);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        // Hapus semua role dari user
+        $user->syncRoles([]);
+
+        // Hapus user secara permanen
+        $user->forceDelete();
+
+        return responseSuccessDelete();
     }
 }
