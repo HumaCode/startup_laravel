@@ -8,8 +8,10 @@ use App\Models\Konfigurasi\Menu;
 use App\Models\Permission;
 use App\Repositories\MenuRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Mavinoo\Batch\BatchFacade;
 use Yajra\DataTables\Facades\DataTables;
 
 class MenuController extends Controller
@@ -40,6 +42,27 @@ class MenuController extends Controller
         ];
 
         return view($this->indexView, $data);
+    }
+
+    public function sort()
+    {
+        $menus = $this->repository->getMenus();
+
+        $data = [];
+        $i = 0;
+        foreach ($menus as $mm) {
+            $i++;
+            $data[] = ['id' => $mm->id, 'orders' => $i];
+            foreach ($mm->subMenus as $sm) {
+                $i++;
+                $data[] = ['id' => $sm->id, 'orders' => $i];
+            }
+        }
+
+        Cache::forget('menus');
+
+        BatchFacade::update(new Menu(), $data, 'id');
+        responseSuccess(true);
     }
 
     public function getData(Request $request)

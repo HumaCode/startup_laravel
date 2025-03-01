@@ -114,7 +114,8 @@
 
             @can('create konfigurasi/menu')
                 <div class="d-flex align-items-center">
-                    <a href="{{ route('konfigurasi.menu.create') }}" class="btn btn-sm btn-light-primary action">
+                    <a href="{{ route('konfigurasi.menu.create') }}"
+                        class="btn btn-sm btn-light-primary hover-scale action">
                         <i class="ki-duotone ki-plus fs-2"></i>Tambah Menu</a>
                 </div>
             @endcan
@@ -133,8 +134,11 @@
                         <span class="text-muted mt-1 fw-semibold fs-7">Data {{ $subtitle }}</span>
                     </h3>
                     <div class="card-toolbar">
-                        {{-- <a href="#" class="btn btn-sm btn-light-primary">
-                            <i class="ki-duotone ki-plus fs-2"></i>New Member</a> --}}
+                        @can('sort konfigurasi/menu')
+                            <a href="{{ route('konfigurasi.menu.sort') }}"
+                                class="btn btn-sm btn-light-success hover-scale sort">
+                                <i class="ki-outline ki-arrows-circle"></i>&nbsp;Sort Menu</a>
+                        @endcan
                     </div>
                 </div>
                 <!--end::Header-->
