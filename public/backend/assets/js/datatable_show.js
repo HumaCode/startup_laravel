@@ -54,13 +54,20 @@ function initDataTable(datatableId, url, columns, responsive = true, searching =
                 var data = api.rows({
                     page: 'current'
                 }).data();
+                var tbody = $('#' + datatableId + ' tbody');
 
-                if (data.length === 0 && settings.json && settings.json.recordsTotal > 0) {
-                    Swal.fire({
-                        title: 'Kosong',
-                        text: 'Tidak ada data yang ditemukan',
-                        icon: 'info'
-                    });
+                // Jika data kosong, tambahkan gambar
+                if (data.length === 0) {
+                    tbody.html(`
+                        <tr>
+                            <td colspan="${settings.aoColumns.length}" class="text-center">
+                                <img src="../../../img/kosong.gif" alt="Data kosong" style="display:block; margin: 0 auto; max-width: 100px;">
+                                <p style="text-align: center;">Data tidak tersedia</p>
+                            </td>
+                        </tr>
+                    `);
+                } else {
+                    tbody.find('.data-kosong').remove(); // Hapus pesan kosong jika data ada
                 }
 
                 // Menambahkan animasi pada baris tabel

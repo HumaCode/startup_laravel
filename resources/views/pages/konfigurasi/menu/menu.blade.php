@@ -20,7 +20,7 @@
 
                 // Kirimkan data ke fungsi JavaScript
                 var datatableId = '{{ $datatableId }}'; // Ganti dengan id DataTable
-                var url = '{{ route('konfigurasi.menu.data') }}'; // URL dari route
+                var url = '{{ $urlData }}'; // URL dari route
                 var columns = [{
                         data: 'DT_RowIndex',
                         orderable: false,
@@ -101,11 +101,8 @@
                 <ul class="breadcrumb breadcrumb-dot fw-semibold text-gray-600 fs-7">
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-gray-600">
-                        <a href="index.html" class="text-gray-600 text-hover-primary">{{ $title }}</a>
+                        <a href="{{ $link }}" class="text-gray-600 text-hover-primary">{{ $subtitle }}</a>
                     </li>
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-gray-500">{{ $subtitle }}</li>
-                    <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
             </div>
@@ -116,7 +113,7 @@
                 <div class="d-flex align-items-center">
                     <a href="{{ route('konfigurasi.menu.create') }}"
                         class="btn btn-sm btn-light-primary hover-scale action">
-                        <i class="ki-duotone ki-plus fs-2"></i>Tambah Menu</a>
+                        <i class="ki-duotone ki-plus fs-2"></i>Tambah</a>
                 </div>
             @endcan
             <!--end::Actions-->

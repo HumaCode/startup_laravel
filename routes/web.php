@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Konfigurasi\MenuController;
+use App\Http\Controllers\Konfigurasi\RoleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CekUserLogin;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,10 @@ Route::middleware([CekUserLogin::class])->group(function () {
         Route::put('menu/sort', [MenuController::class, 'sort'])->name('menu.sort');
         Route::post('menu/data', [MenuController::class, 'getData'])->name('menu.data');
         Route::resource('menu', MenuController::class);
+
+        // roles
+        Route::post('roles/data', [RoleController::class, 'getData'])->name('roles.data');
+        Route::resource('roles', RoleController::class);
     });
 });
 

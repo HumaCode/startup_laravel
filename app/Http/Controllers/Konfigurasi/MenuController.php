@@ -22,6 +22,8 @@ class MenuController extends Controller
     private $indexView      = 'pages.konfigurasi.menu.menu';
     private $urlStore       = 'konfigurasi.menu.store';
     private $urlUpdate      = 'konfigurasi.menu.update';
+    private $urlLink        = 'konfigurasi.menu.index';
+    private $urlData        = 'konfigurasi.roles.data';
     private $tabel          = 'tablemenu';
 
     public function __construct(private MenuRepository $repository)
@@ -37,7 +39,8 @@ class MenuController extends Controller
         $data = [
             'title'         => $this->title,
             'subtitle'      => $this->subtitle,
-            'link'          => route('konfigurasi.menu.index'),
+            'link'          => route($this->urlLink),
+            'urlData'       => route($this->urlData),
             'datatableId'   => $this->tabel,
         ];
 
