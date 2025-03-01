@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Konfigurasi\AksesRoleController;
 use App\Http\Controllers\Konfigurasi\MenuController;
 use App\Http\Controllers\Konfigurasi\PermissionController;
 use App\Http\Controllers\Konfigurasi\RoleController;
@@ -30,6 +31,11 @@ Route::middleware([CekUserLogin::class])->group(function () {
         // permission
         Route::post('permissions/data', [PermissionController::class, 'getData'])->name('permissions.data');
         Route::resource('permissions', PermissionController::class);
+
+        // akses-role
+        Route::post('akses-role/data', [AksesRoleController::class, 'getData'])->name('akses-role.data');
+        Route::get('akses-role/{role}/role', [AksesRoleController::class, 'getPermissionByRole']);
+        Route::resource('akses-role', AksesRoleController::class)->except('create', 'store', 'delete')->parameters(['akses-role' => 'role']);
     });
 });
 
