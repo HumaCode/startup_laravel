@@ -282,42 +282,44 @@
                                     <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                                         data-kt-menu-placement="bottom-start"
                                         class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
-
-                                        @if (count($mm->subMenus))
-                                            <span @class([
-                                                'menu-link',
-                                                'py-3',
-                                                'active' => str_contains(request()->path(), $mm->url),
-                                            ])>
-                                                {{ $mm->name }}
-                                            </span>
-
-                                            <div
-                                                class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-250px">
-                                                @foreach ($mm->subMenus as $submenu)
-                                                    <div class="menu-item">
-                                                        <a @class([
-                                                            'menu-link',
-                                                            'py-3',
-                                                            'active' => str_contains(request()->path(), $submenu->url),
-                                                        ])
-                                                            href="{{ url($submenu->url) }}">
-                                                            <span class="menu-icon">
-                                                                <i class="ki-outline ki-element-11"></i>
-                                                            </span>
-                                                            {{ $submenu->name }}
-                                                        </a>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        @else
-                                            <div class="menu-item">
-                                                <a class="menu-link py-3" href="{{ url($mm->url) }}">
+                                        @can('read ' . filterKata($mm->url))
+                                            @if (count($mm->subMenus))
+                                                <span @class([
+                                                    'menu-link',
+                                                    'py-3',
+                                                    'active' => str_contains(request()->path(), $mm->url),
+                                                ])>
                                                     {{ $mm->name }}
-                                                </a>
-                                            </div>
-                                        @endif
+                                                </span>
 
+                                                <div
+                                                    class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-250px">
+                                                    @foreach ($mm->subMenus as $submenu)
+                                                        @can('read ' . filterKata($submenu->url))
+                                                            <div class="menu-item">
+                                                                <a @class([
+                                                                    'menu-link',
+                                                                    'py-3',
+                                                                    'active' => str_contains(request()->path(), $submenu->url),
+                                                                ])
+                                                                    href="{{ url($submenu->url) }}">
+                                                                    <span class="menu-icon">
+                                                                        <i class="ki-outline ki-element-11"></i>
+                                                                    </span>
+                                                                    {{ $submenu->name }}
+                                                                </a>
+                                                            </div>
+                                                        @endcan
+                                                    @endforeach
+                                                </div>
+                                            @else
+                                                <div class="menu-item">
+                                                    <a class="menu-link py-3" href="{{ url($mm->url) }}">
+                                                        {{ $mm->name }}
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        @endcan
                                     </div>
                                 @endforeach
 
