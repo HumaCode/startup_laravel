@@ -4,6 +4,7 @@ use App\Http\Controllers\Konfigurasi\AksesRoleController;
 use App\Http\Controllers\Konfigurasi\MenuController;
 use App\Http\Controllers\Konfigurasi\PermissionController;
 use App\Http\Controllers\Konfigurasi\RoleController;
+use App\Http\Controllers\Konfigurasi\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CekUserLogin;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,11 @@ Route::middleware([CekUserLogin::class])->group(function () {
         Route::post('akses-role/data', [AksesRoleController::class, 'getData'])->name('akses-role.data');
         Route::get('akses-role/{role}/role', [AksesRoleController::class, 'getPermissionByRole']);
         Route::resource('akses-role', AksesRoleController::class)->except('create', 'store', 'delete')->parameters(['akses-role' => 'role']);
+
+        // users
+        Route::get('users/{id}', [UserController::class, 'aktivasiUser'])->name('aktivasi.user');
+        Route::post('users/data', [UserController::class, 'getData'])->name('users.data');
+        Route::resource('users', UserController::class);
     });
 });
 

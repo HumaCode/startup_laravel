@@ -70,11 +70,15 @@ function initDataTable(datatableId, url, columns, responsive = true, searching =
                     tbody.find('.data-kosong').remove(); // Hapus pesan kosong jika data ada
                 }
 
+                if ($('[data-fslightbox]').length > 0) {
+                    refreshFsLightbox(); // Inisialisasi ulang lightbox jika elemen ditemukan
+                }
+
                 // Menambahkan animasi pada baris tabel
                 $('#' + datatableId + ' tbody tr').addClass('hover-elevate-up');
                 $('#' + datatableId + ' tbody td').addClass('hover-scale');
 
-
+                $('[data-bs-toggle="tooltip"]').tooltip();
             },
             pagingType: 'simple_numbers', // Mengurangi kompleksitas navigasi paging
             scrollX: true, // Mengaktifkan scroll horizontal jika tabel terlalu lebar

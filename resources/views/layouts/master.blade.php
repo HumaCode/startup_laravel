@@ -585,6 +585,9 @@
     <script src="{{ asset('/') }}backend/assets/js/custom/utilities/modals/users-search.js"></script>
 
     <script src="{{ asset('/') }}backend/assets/js/main.js"></script>
+    <script src="{{ asset('/') }}backend/assets/plugins/custom/fslightbox/fslightbox.bundle.js"></script>
+
+
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 

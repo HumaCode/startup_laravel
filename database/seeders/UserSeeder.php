@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         $default    = [
             // 'email_verified_at' => now(),
             'password'          => Hash::make('123'),
+            'is_active'         => '1',
             // 'remember_token'    => Str::random(10)
         ];
 
@@ -30,10 +31,8 @@ class UserSeeder extends Seeder
                     'name'              => ucwords($value),
                     'username'          => $value,
                     'email'             => $value . '@gmail.com',
-
                 ]]
             )->assignRole($value);
         }
-
     }
 }
