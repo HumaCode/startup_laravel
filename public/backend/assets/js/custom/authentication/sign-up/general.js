@@ -170,7 +170,14 @@ var KTSignupGeneral = function () {
                     'name': {
                         validators: {
                             notEmpty: {
-                                message: 'Name is required'
+                                message: 'Nama harus diisi..'
+                            }
+                        }
+                    },
+                    'username': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Username harus diisi..'
                             }
                         }
                     },
@@ -181,17 +188,17 @@ var KTSignupGeneral = function () {
                                 message: 'Email tidak valid !!',
                             },
                             notEmpty: {
-                                message: 'Email address is required'
+                                message: 'Email harus diisi..'
                             }
                         }
                     },
                     'password': {
                         validators: {
                             notEmpty: {
-                                message: 'The password is required'
+                                message: 'Password harus diisi..'
                             },
                             callback: {
-                                message: 'Please enter valid password',
+                                message: 'Password tidak valid..',
                                 callback: function (input) {
                                     if (input.value.length > 0) {
                                         return validatePassword();
@@ -203,13 +210,13 @@ var KTSignupGeneral = function () {
                     'password_confirmation': {
                         validators: {
                             notEmpty: {
-                                message: 'The password confirmation is required'
+                                message: 'Password confirmation harus diisi..'
                             },
                             identical: {
                                 compare: function () {
                                     return form.querySelector('[name="password"]').value;
                                 },
-                                message: 'The password and its confirm are not the same'
+                                message: 'Password dan password konfirmation tidak cocok'
                             }
                         }
                     },
@@ -264,7 +271,7 @@ var KTSignupGeneral = function () {
                         } else {
                             // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                             Swal.fire({
-                                text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
+                                text: "Terjadi kesalahan, coba lagi nanti.",
                                 icon: "error",
                                 buttonsStyling: false,
                                 confirmButtonText: "Oke.",
@@ -275,7 +282,7 @@ var KTSignupGeneral = function () {
                         }
                     }).catch(function (error) {
                         Swal.fire({
-                            text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
+                            text: "Terjadi kesalahan, coba lagi nanti.",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Oke.",
@@ -294,7 +301,7 @@ var KTSignupGeneral = function () {
                 } else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     Swal.fire({
-                        text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
+                        text: "Terjadi kesalahan, coba lagi nanti.",
                         icon: "error",
                         buttonsStyling: false,
                         confirmButtonText: "Oke.",

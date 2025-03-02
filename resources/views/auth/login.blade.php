@@ -61,7 +61,7 @@
         <!--begin::Authentication - Sign-in -->
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <!--begin::Logo-->
-            <a href="index.html" class="d-block d-lg-none mx-auto py-20">
+            <a href="{{ url('/') }}" class="d-block d-lg-none mx-auto py-20">
                 <img alt="Logo" src="{{ asset('/') }}backend/assets/media/logos/default.svg"
                     class="theme-light-show h-25px" />
                 <img alt="Logo" src="{{ asset('/') }}backend/assets/media/logos/default-dark.svg"
@@ -81,7 +81,7 @@
                         <div class="m-0">
                             <span class="text-gray-500 fw-bold fs-5 me-2" data-kt-translate="sign-in-head-desc">Belum
                                 Terdaftar.?</span>
-                            <a href="authentication/layouts/fancy/sign-up.html" class="link-primary fw-bold fs-5"
+                            <a href="{{ route('register') }}" class="link-primary fw-bold fs-5"
                                 data-kt-translate="sign-in-head-link">Daftar</a>
                         </div>
                         <!--end::Sign Up link=-->
@@ -94,6 +94,8 @@
 
                         <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" method="POST"
                             action="{{ route('login') }}" data-kt-redirect-url="{{ route('dashboard') }}">
+                            @csrf
+
                             <!--begin::Body-->
                             <div class="card-body">
                                 <!--begin::Heading-->
