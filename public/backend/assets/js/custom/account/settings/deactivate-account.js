@@ -57,7 +57,7 @@ var KTAccountSettingsDeactivateAccount = function () {
                     }).then((result) => {
                         if (result.isConfirmed) {
                             Swal.fire({
-                                text: 'Your account has been deactivated.', 
+                                text: 'Your account has been deactivated.',
                                 icon: 'success',
                                 confirmButtonText: "Ok",
                                 buttonsStyling: false,
@@ -67,7 +67,7 @@ var KTAccountSettingsDeactivateAccount = function () {
                             })
                         } else if (result.isDenied) {
                             Swal.fire({
-                                text: 'Account not deactivated.', 
+                                text: 'Account not deactivated.',
                                 icon: 'info',
                                 confirmButtonText: "Ok",
                                 buttonsStyling: false,
@@ -80,10 +80,10 @@ var KTAccountSettingsDeactivateAccount = function () {
 
                 } else {
                     swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-light-primary"
                         }
@@ -101,7 +101,7 @@ var KTAccountSettingsDeactivateAccount = function () {
             if (!form) {
                 return;
             }
-            
+
             submitButton = document.querySelector('#kt_account_deactivate_account_submit');
 
             initValidation();
@@ -111,6 +111,6 @@ var KTAccountSettingsDeactivateAccount = function () {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+KTUtil.onDOMContentLoaded(function () {
     KTAccountSettingsDeactivateAccount.init();
 });

@@ -88,7 +88,7 @@ var KTAppCalendar = function () {
                     endStr: arg.event.endStr,
                     allDay: arg.event.allDay
                 });
-                
+
                 handleViewEvent();
             },
 
@@ -230,7 +230,7 @@ var KTAppCalendar = function () {
             ],
 
             // Handle changing calendar views --- more info: https://fullcalendar.io/docs/datesSet
-            datesSet: function(){
+            datesSet: function () {
                 // do some stuff
             }
         });
@@ -375,7 +375,7 @@ var KTAppCalendar = function () {
                                 text: "New event added to calendar!",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Oke.",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -426,10 +426,10 @@ var KTAppCalendar = function () {
                     } else {
                         // Show popup warning 
                         Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
@@ -494,7 +494,7 @@ var KTAppCalendar = function () {
                                 text: "New event added to calendar!",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Oke.",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -548,10 +548,10 @@ var KTAppCalendar = function () {
                     } else {
                         // Show popup warning 
                         Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
@@ -617,7 +617,7 @@ var KTAppCalendar = function () {
                         text: "Your event was not deleted!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -663,7 +663,7 @@ var KTAppCalendar = function () {
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -699,7 +699,7 @@ var KTAppCalendar = function () {
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }

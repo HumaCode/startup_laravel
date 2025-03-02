@@ -10,7 +10,7 @@ var KTModalCreateProjectTargets = function () {
 	var stepper;
 
 	// Private functions
-	var initForm = function() {
+	var initForm = function () {
 		// Tags. For more info, please visit the official plugin site: https://yaireo.github.io/tagify/
 		var tags = new Tagify(form.querySelector('[name="target_tags"]'), {
 			whitelist: ["Important", "Urgent", "High", "Medium", "Low"],
@@ -21,9 +21,9 @@ var KTModalCreateProjectTargets = function () {
 				closeOnSelect: false    // <- do not hide the suggestions dropdown once an item has been selected
 			}
 		});
-		tags.on("change", function(){
+		tags.on("change", function () {
 			// Revalidate the field when an option is chosen
-            validator.revalidateField('tags');
+			validator.revalidateField('tags');
 		});
 
 		// Due date. For more info, please visit the official plugin site: https://flatpickr.js.org/
@@ -34,13 +34,13 @@ var KTModalCreateProjectTargets = function () {
 		});
 
 		// Expiry year. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="target_assign"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validator.revalidateField('target_assign');
-        });
+		$(form.querySelector('[name="target_assign"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validator.revalidateField('target_assign');
+		});
 	}
 
-	var initValidation = function() {
+	var initValidation = function () {
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
 		validator = FormValidation.formValidation(
 			form,
@@ -89,20 +89,20 @@ var KTModalCreateProjectTargets = function () {
 						}
 					}
 				},
-				
+
 				plugins: {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
 		);
 	}
 
-	var handleForm = function() {
+	var handleForm = function () {
 		nextButton.addEventListener('click', function (e) {
 			// Prevent default button action
 			e.preventDefault();
@@ -120,33 +120,33 @@ var KTModalCreateProjectTargets = function () {
 						nextButton.setAttribute('data-kt-indicator', 'on');
 
 						// Simulate form submission
-						setTimeout(function() {
+						setTimeout(function () {
 							// Simulate form submission
 							nextButton.removeAttribute('data-kt-indicator');
 
 							// Enable button
 							nextButton.disabled = false;
-							
+
 							// Go to next step
 							stepper.goNext();
-						}, 1500);   						
+						}, 1500);
 					} else {
 						// Enable button
 						nextButton.disabled = false;
-						
+
 						// Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}
 						});
 					}
 				});
-			}			
+			}
 		});
 
 		previousButton.addEventListener('click', function () {

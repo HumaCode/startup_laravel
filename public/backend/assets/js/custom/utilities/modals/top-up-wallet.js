@@ -54,10 +54,10 @@ var KTModalTopUpWallet = function () {
 					} else {
 						// Show error message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-light"
 							}
@@ -106,24 +106,24 @@ var KTModalTopUpWallet = function () {
 	}
 
 	// Init form inputs
-	var initForm = function () {	
-        // Handle currency swap logic
-        const currencyTypes = form.querySelectorAll('[name="currency_type"]');
-        const targets = form.querySelectorAll('[data-kt-modal-top-up-wallet-option]');
-        let value = "dollar";
-        currencyTypes.forEach(currency => {
-            currency.addEventListener('change', e => {
-                value = e.target.value;
+	var initForm = function () {
+		// Handle currency swap logic
+		const currencyTypes = form.querySelectorAll('[name="currency_type"]');
+		const targets = form.querySelectorAll('[data-kt-modal-top-up-wallet-option]');
+		let value = "dollar";
+		currencyTypes.forEach(currency => {
+			currency.addEventListener('change', e => {
+				value = e.target.value;
 
-                targets.forEach(target => {
-                    target.classList.add('d-none');
+				targets.forEach(target => {
+					target.classList.add('d-none');
 
-                    if(target.getAttribute('data-kt-modal-top-up-wallet-option') === value){
-                        target.classList.remove('d-none');
-                    }
-                });
-            });
-        });
+					if (target.getAttribute('data-kt-modal-top-up-wallet-option') === value) {
+						target.classList.remove('d-none');
+					}
+				});
+			});
+		});
 
 		// Handle top up wallet button
 		const restartButton = document.querySelector('#kt_modal_top_up_wallet_create_new');
@@ -160,7 +160,7 @@ var KTModalTopUpWallet = function () {
 			}
 		));
 
-        // Step 2
+		// Step 2
 		validations.push(FormValidation.formValidation(
 			form,
 			{
@@ -184,7 +184,7 @@ var KTModalTopUpWallet = function () {
 			}
 		));
 
-        // Step 3
+		// Step 3
 		validations.push(FormValidation.formValidation(
 			form,
 			{
@@ -210,44 +210,44 @@ var KTModalTopUpWallet = function () {
 	}
 
 	// Handle cancel modal
-    const handleCancelAction = () => {
-        const closeButton = modalEl.querySelector('[data-kt-modal-action-type="close"]');
-        closeButton.addEventListener('click', e => {
-            cancelAction(e);
-        });
+	const handleCancelAction = () => {
+		const closeButton = modalEl.querySelector('[data-kt-modal-action-type="close"]');
+		closeButton.addEventListener('click', e => {
+			cancelAction(e);
+		});
 
-        const cancelAction = (e) => {
-            e.preventDefault();
+		const cancelAction = (e) => {
+			e.preventDefault();
 
-            Swal.fire({
-                text: "Are you sure you would like to cancel?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, cancel it!",
-                cancelButtonText: "No, return",
-                customClass: {
-                    confirmButton: "btn btn-primary",
-                    cancelButton: "btn btn-active-light"
-                }
-            }).then(function (result) {
-                if (result.value) {
-                    form.reset(); // Reset form	
-                    modal.hide(); // Hide modal				
-                } else if (result.dismiss === 'cancel') {
-                    Swal.fire({
-                        text: "Your form has not been cancelled!.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary",
-                        }
-                    });
-                }
-            });
-        }
-    }
+			Swal.fire({
+				text: "Are you sure you would like to cancel?",
+				icon: "warning",
+				showCancelButton: true,
+				buttonsStyling: false,
+				confirmButtonText: "Yes, cancel it!",
+				cancelButtonText: "No, return",
+				customClass: {
+					confirmButton: "btn btn-primary",
+					cancelButton: "btn btn-active-light"
+				}
+			}).then(function (result) {
+				if (result.value) {
+					form.reset(); // Reset form	
+					modal.hide(); // Hide modal				
+				} else if (result.dismiss === 'cancel') {
+					Swal.fire({
+						text: "Your form has not been cancelled!.",
+						icon: "error",
+						buttonsStyling: false,
+						confirmButtonText: "Oke.",
+						customClass: {
+							confirmButton: "btn btn-primary",
+						}
+					});
+				}
+			});
+		}
+	}
 
 	return {
 		// Public Functions

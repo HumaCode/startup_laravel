@@ -3,7 +3,7 @@
 // Class definition
 var KTCreateApp = function () {
 	// Elements
-	var modal;	
+	var modal;
 	var modalEl;
 
 	var stepper;
@@ -54,10 +54,10 @@ var KTCreateApp = function () {
 					} else {
 						// Show error message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-light"
 							}
@@ -99,7 +99,7 @@ var KTCreateApp = function () {
 					formSubmitButton.setAttribute('data-kt-indicator', 'on');
 
 					// Simulate form submission
-					setTimeout(function() {
+					setTimeout(function () {
 						// Hide loading indication
 						formSubmitButton.removeAttribute('data-kt-indicator');
 
@@ -111,10 +111,10 @@ var KTCreateApp = function () {
 					}, 2000);
 				} else {
 					Swal.fire({
-						text: "Sorry, looks like there are some errors detected, please try again.",
+						text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 						icon: "error",
 						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
+						confirmButtonText: "Oke.",
 						customClass: {
 							confirmButton: "btn btn-light"
 						}
@@ -127,18 +127,18 @@ var KTCreateApp = function () {
 	}
 
 	// Init form inputs
-	var initForm = function() {
+	var initForm = function () {
 		// Expiry month. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="card_expiry_month"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validations[3].revalidateField('card_expiry_month');
-        });
+		$(form.querySelector('[name="card_expiry_month"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validations[3].revalidateField('card_expiry_month');
+		});
 
 		// Expiry year. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="card_expiry_year"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validations[3].revalidateField('card_expiry_year');
-        });
+		$(form.querySelector('[name="card_expiry_year"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validations[3].revalidateField('card_expiry_year');
+		});
 	}
 
 	var initValidation = function () {
@@ -167,8 +167,8 @@ var KTCreateApp = function () {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -192,8 +192,8 @@ var KTCreateApp = function () {
 					// Bootstrap Framework Integration
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -224,8 +224,8 @@ var KTCreateApp = function () {
 					// Bootstrap Framework Integration
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -248,9 +248,9 @@ var KTCreateApp = function () {
 							notEmpty: {
 								message: 'Card member is required'
 							},
-                            creditCard: {
-                                message: 'Card number is not valid'
-                            }
+							creditCard: {
+								message: 'Card number is not valid'
+							}
 						}
 					},
 					'card_expiry_month': {
@@ -289,8 +289,8 @@ var KTCreateApp = function () {
 					// Bootstrap Framework Integration
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -322,6 +322,6 @@ var KTCreateApp = function () {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
-    KTCreateApp.init();
+KTUtil.onDOMContentLoaded(function () {
+	KTCreateApp.init();
 });

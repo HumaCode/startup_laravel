@@ -33,7 +33,7 @@ var KTSignupGeneral = function () {
                         validators: {
                             regexp: {
                                 regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                message: 'The value is not a valid email address',
+                                message: 'Email tidak valid !!',
                             },
                             notEmpty: {
                                 message: 'Email address is required'
@@ -118,7 +118,7 @@ var KTSignupGeneral = function () {
                             text: "You have successfully reset your password!",
                             icon: "success",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
@@ -139,10 +139,10 @@ var KTSignupGeneral = function () {
                 } else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary"
                         }
@@ -178,7 +178,7 @@ var KTSignupGeneral = function () {
                         validators: {
                             regexp: {
                                 regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                message: 'The value is not a valid email address',
+                                message: 'Email tidak valid !!',
                             },
                             notEmpty: {
                                 message: 'Email address is required'
@@ -264,10 +264,10 @@ var KTSignupGeneral = function () {
                         } else {
                             // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                             Swal.fire({
-                                text: "Sorry, looks like there are some errors detected, please try again.",
+                                text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                                 icon: "error",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Oke.",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -275,10 +275,10 @@ var KTSignupGeneral = function () {
                         }
                     }).catch(function (error) {
                         Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
@@ -294,10 +294,10 @@ var KTSignupGeneral = function () {
                 } else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary"
                         }
@@ -320,7 +320,7 @@ var KTSignupGeneral = function () {
         return (passwordMeter.getScore() > 50);
     }
 
-    var isValidUrl = function(url) {
+    var isValidUrl = function (url) {
         try {
             new URL(url);
             return true;

@@ -9,7 +9,7 @@ var KTModalCreateProjectType = function () {
 	var stepper;
 
 	// Private functions
-	var initValidation = function() {
+	var initValidation = function () {
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
 		validator = FormValidation.formValidation(
 			form,
@@ -23,20 +23,20 @@ var KTModalCreateProjectType = function () {
 						}
 					}
 				},
-				
+
 				plugins: {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
 		);
 	}
 
-	var handleForm = function() {
+	var handleForm = function () {
 		nextButton.addEventListener('click', function (e) {
 			// Prevent default button action
 			e.preventDefault();
@@ -55,33 +55,33 @@ var KTModalCreateProjectType = function () {
 						nextButton.setAttribute('data-kt-indicator', 'on');
 
 						// Simulate form submission
-						setTimeout(function() {
+						setTimeout(function () {
 							// Simulate form submission
 							nextButton.removeAttribute('data-kt-indicator');
-							
+
 							// Enable button
 							nextButton.disabled = false;
-							
+
 							// Go to next step
 							stepper.goNext();
-						}, 1000);   						
+						}, 1000);
 					} else {
 						// Enable button
 						nextButton.disabled = false;
-						
+
 						// Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}
 						});
 					}
 				});
-			}			
+			}
 		});
 	}
 

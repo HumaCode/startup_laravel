@@ -1,13 +1,13 @@
 "use strict";
 
 // Class Definition
-var KTSigninTwoFactor = function() {
+var KTSigninTwoFactor = function () {
     // Elements
     var form;
     var submitButton;
 
     // Handle form
-    var handleForm = function(e) {        
+    var handleForm = function (e) {
         // Handle form submit
         submitButton.addEventListener('click', function (e) {
             e.preventDefault();
@@ -29,7 +29,7 @@ var KTSigninTwoFactor = function() {
                 submitButton.disabled = true;
 
                 // Simulate ajax request
-                setTimeout(function() {
+                setTimeout(function () {
                     // Hide loading indication
                     submitButton.removeAttribute('data-kt-indicator');
 
@@ -41,12 +41,12 @@ var KTSigninTwoFactor = function() {
                         text: "You have been successfully verified!",
                         icon: "success",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary"
                         }
                     }).then(function (result) {
-                        if (result.isConfirmed) { 
+                        if (result.isConfirmed) {
                             inputs.map(function (input) {
                                 input.value = '';
                             });
@@ -57,24 +57,24 @@ var KTSigninTwoFactor = function() {
                             }
                         }
                     });
-                }, 1000); 
+                }, 1000);
             } else {
                 swal.fire({
                     text: "Please enter valid securtiy code and try again.",
                     icon: "error",
                     buttonsStyling: false,
-                    confirmButtonText: "Ok, got it!",
+                    confirmButtonText: "Oke.",
                     customClass: {
                         confirmButton: "btn fw-bold btn-light-primary"
                     }
-                }).then(function() {
+                }).then(function () {
                     KTUtil.scrollTop();
                 });
             }
         });
     }
 
-    var handleType = function() {
+    var handleType = function () {
         var input1 = form.querySelector("[name=code_1]");
         var input2 = form.querySelector("[name=code_2]");
         var input3 = form.querySelector("[name=code_3]");
@@ -84,47 +84,47 @@ var KTSigninTwoFactor = function() {
 
         input1.focus();
 
-        input1.addEventListener("keyup", function() {
+        input1.addEventListener("keyup", function () {
             if (this.value.length === 1) {
                 input2.focus();
             }
         });
 
-        input2.addEventListener("keyup", function() {
+        input2.addEventListener("keyup", function () {
             if (this.value.length === 1) {
                 input3.focus();
             }
         });
 
-        input3.addEventListener("keyup", function() {
+        input3.addEventListener("keyup", function () {
             if (this.value.length === 1) {
                 input4.focus();
             }
         });
 
-        input4.addEventListener("keyup", function() {
+        input4.addEventListener("keyup", function () {
             if (this.value.length === 1) {
                 input5.focus();
             }
         });
 
-        input5.addEventListener("keyup", function() {
+        input5.addEventListener("keyup", function () {
             if (this.value.length === 1) {
                 input6.focus();
             }
         });
-        
-        input6.addEventListener("keyup", function() {
+
+        input6.addEventListener("keyup", function () {
             if (this.value.length === 1) {
                 input6.blur();
             }
         });
-    }    
+    }
 
     // Public functions
     return {
         // Initialization
-        init: function() {
+        init: function () {
             form = document.querySelector('#kt_sing_in_two_factor_form');
             submitButton = document.querySelector('#kt_sing_in_two_factor_submit');
 
@@ -135,6 +135,6 @@ var KTSigninTwoFactor = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+KTUtil.onDOMContentLoaded(function () {
     KTSigninTwoFactor.init();
 });

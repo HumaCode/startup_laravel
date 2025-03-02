@@ -10,23 +10,23 @@ var KTModalNewTicket = function () {
 	var modalEl;
 
 	// Init form inputs
-	var initForm = function() {
+	var initForm = function () {
 		// Ticket attachments
 		// For more info about Dropzone plugin visit:  https://www.dropzonejs.com/#usage
-		var myDropzone = new Dropzone("#kt_modal_create_ticket_attachments", { 
+		var myDropzone = new Dropzone("#kt_modal_create_ticket_attachments", {
 			url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
-            paramName: "file", // The name that will be used to transfer the file
-            maxFiles: 10,
-            maxFilesize: 10, // MB
-            addRemoveLinks: true,
-            accept: function(file, done) {
-                if (file.name == "justinbieber.jpg") {
-                    done("Naha, you don't.");
-                } else {
-                    done();
-                }
-            }
-		});  
+			paramName: "file", // The name that will be used to transfer the file
+			maxFiles: 10,
+			maxFilesize: 10, // MB
+			addRemoveLinks: true,
+			accept: function (file, done) {
+				if (file.name == "justinbieber.jpg") {
+					done("Naha, you don't.");
+				} else {
+					done();
+				}
+			}
+		});
 
 		// Due date. For more info, please visit the official plugin site: https://flatpickr.js.org/
 		var dueDate = $(form.querySelector('[name="due_date"]'));
@@ -36,20 +36,20 @@ var KTModalNewTicket = function () {
 		});
 
 		// Ticket user. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="user"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validator.revalidateField('user');
-        });
+		$(form.querySelector('[name="user"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validator.revalidateField('user');
+		});
 
 		// Ticket status. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="status"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validator.revalidateField('status');
-        });
+		$(form.querySelector('[name="status"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validator.revalidateField('status');
+		});
 	}
 
 	// Handle form validation and submittion
-	var handleForm = function() {
+	var handleForm = function () {
 		// Stepper custom navigation
 
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
@@ -86,19 +86,19 @@ var KTModalNewTicket = function () {
 						}
 					},
 					'notifications[]': {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please select at least one notifications method'
-                            }
-                        }
-                    },
+						validators: {
+							notEmpty: {
+								message: 'Please select at least one notifications method'
+							}
+						}
+					},
 				},
 				plugins: {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -119,18 +119,18 @@ var KTModalNewTicket = function () {
 						// Disable button to avoid multiple click 
 						submitButton.disabled = true;
 
-						setTimeout(function() {
+						setTimeout(function () {
 							submitButton.removeAttribute('data-kt-indicator');
 
 							// Enable button
 							submitButton.disabled = false;
-							
+
 							// Show success message. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 							Swal.fire({
 								text: "Form has been successfully submitted!",
 								icon: "success",
 								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
+								confirmButtonText: "Oke.",
 								customClass: {
 									confirmButton: "btn btn-primary"
 								}
@@ -141,14 +141,14 @@ var KTModalNewTicket = function () {
 							});
 
 							//form.submit(); // Submit form
-						}, 2000);   						
+						}, 2000);
 					} else {
 						// Show error message.
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}
@@ -181,7 +181,7 @@ var KTModalNewTicket = function () {
 						text: "Your form has not been cancelled!.",
 						icon: "error",
 						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
+						confirmButtonText: "Oke.",
 						customClass: {
 							confirmButton: "btn btn-primary",
 						}

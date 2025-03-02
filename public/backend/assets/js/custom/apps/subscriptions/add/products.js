@@ -7,7 +7,7 @@ var KTSubscriptionsProducts = function () {
     var modalEl;
     var modal;
 
-    var initDatatable = function() {
+    var initDatatable = function () {
         // Init datatable --- more info on datatables: https://datatables.net/manual/        
         datatable = $(table).DataTable({
             "info": false,
@@ -19,8 +19,8 @@ var KTSubscriptionsProducts = function () {
     }
 
     // Delete product
-    var deleteProduct = function() {
-        KTUtil.on(table, '[data-kt-action="product_remove"]', 'click', function(e) {
+    var deleteProduct = function () {
+        KTUtil.on(table, '[data-kt-action="product_remove"]', 'click', function (e) {
             e.preventDefault();
 
             // Select parent row
@@ -47,7 +47,7 @@ var KTSubscriptionsProducts = function () {
                         text: "You have deleted " + productName + "!.",
                         icon: "success",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn fw-bold btn-primary",
                         }
@@ -60,7 +60,7 @@ var KTSubscriptionsProducts = function () {
                         text: customerName + " was not deleted.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn fw-bold btn-primary",
                         }
@@ -71,42 +71,42 @@ var KTSubscriptionsProducts = function () {
     }
 
     // Modal handlers
-    var addProduct = function() {
+    var addProduct = function () {
         // Select modal buttons
         const closeButton = modalEl.querySelector('#kt_modal_add_product_close');
         const cancelButton = modalEl.querySelector('#kt_modal_add_product_cancel');
         const submitButton = modalEl.querySelector('#kt_modal_add_product_submit');
 
         // Cancel button action
-        cancelButton.addEventListener('click', function(e){
+        cancelButton.addEventListener('click', function (e) {
             e.preventDefault();
 
-			Swal.fire({
-				text: "Are you sure you would like to cancel?",
-				icon: "warning",
-				showCancelButton: true,
-				buttonsStyling: false,
-				confirmButtonText: "Yes, cancel it!",
-				cancelButtonText: "No, return",
-				customClass: {
-					confirmButton: "btn btn-primary",
-					cancelButton: "btn btn-active-light"
-				}
-			}).then(function (result) {
-				if (result.value) {
-					modal.hide(); // Hide modal				
-				} else if (result.dismiss === 'cancel') {
-					Swal.fire({
-						text: "Your form has not been cancelled!.",
-						icon: "error",
-						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
-						customClass: {
-							confirmButton: "btn btn-primary",
-						}
-					});
-				}
-			});
+            Swal.fire({
+                text: "Are you sure you would like to cancel?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, cancel it!",
+                cancelButtonText: "No, return",
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                    cancelButton: "btn btn-active-light"
+                }
+            }).then(function (result) {
+                if (result.value) {
+                    modal.hide(); // Hide modal				
+                } else if (result.dismiss === 'cancel') {
+                    Swal.fire({
+                        text: "Your form has not been cancelled!.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Oke.",
+                        customClass: {
+                            confirmButton: "btn btn-primary",
+                        }
+                    });
+                }
+            });
         });
 
         // Add customer button handler
@@ -114,13 +114,13 @@ var KTSubscriptionsProducts = function () {
             e.preventDefault();
 
             // Check all radio buttons
-            var radio = modalEl.querySelector('input[type="radio"]:checked');            
+            var radio = modalEl.querySelector('input[type="radio"]:checked');
 
             // Define datatable row node
             var rowNode;
 
             if (radio && radio.checked === true) {
-                rowNode = datatable.row.add( [
+                rowNode = datatable.row.add([
                     radio.getAttribute('data-kt-product-name'),
                     '1',
                     radio.getAttribute('data-kt-product-price') + ' / ' + radio.getAttribute('data-kt-product-frequency'),
@@ -128,8 +128,8 @@ var KTSubscriptionsProducts = function () {
                 ]).draw().node();
 
                 // Add custom class to last column -- more info: https://datatables.net/forums/discussion/22341/row-add-cell-class
-                $( rowNode ).find('td').eq(3).addClass('text-end');
-            }           
+                $(rowNode).find('td').eq(3).addClass('text-end');
+            }
 
             modal.hide(); // Remove modal
         });

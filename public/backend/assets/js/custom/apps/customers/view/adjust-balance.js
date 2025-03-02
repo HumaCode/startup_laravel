@@ -29,7 +29,7 @@ var KTModalAdjustBalance = function () {
         // Get current balance value
         const isNegative = currentBalance.innerHTML.includes('-');
         let currentValue = parseFloat(currentBalance.innerHTML.replace(/[^0-9.]/g, '').replace(',', ''));
-        currentValue = isNegative ? currentValue * -1 : currentValue; 
+        currentValue = isNegative ? currentValue * -1 : currentValue;
 
         // On change event for inputmask
         let maskValue;
@@ -38,7 +38,7 @@ var KTModalAdjustBalance = function () {
             maskValue = parseFloat(e.target.value.replace(/[^0-9.]/g, '').replace(',', ''));
 
             // Set mask value as 0 when NaN detected
-            if(isNaN(maskValue)){
+            if (isNaN(maskValue)) {
                 maskValue = 0;
             }
 
@@ -116,7 +116,7 @@ var KTModalAdjustBalance = function () {
                                 text: "Form has been successfully submitted!",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Oke.",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -138,10 +138,10 @@ var KTModalAdjustBalance = function () {
                     } else {
                         // Show popup warning 
                         Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
@@ -174,7 +174,7 @@ var KTModalAdjustBalance = function () {
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -206,7 +206,7 @@ var KTModalAdjustBalance = function () {
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -215,7 +215,7 @@ var KTModalAdjustBalance = function () {
             });
         });
     }
-    
+
     return {
         // Public functions
         init: function () {

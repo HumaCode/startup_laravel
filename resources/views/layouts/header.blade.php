@@ -218,11 +218,13 @@
                         <!--begin::Menu separator-->
                         <div class="separator my-2"></div>
                         <!--end::Menu separator-->
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5">
-                            <a href="account/overview.html" class="menu-link px-5">My Profile</a>
-                        </div>
-                        <!--end::Menu item-->
+
+                        @can('update setting/profil')
+                            <div class="menu-item px-5">
+                                <a href="{{ route('setting.profil.index') }}" class="menu-link px-5">Profil</a>
+                            </div>
+                        @endcan
+
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <a href="apps/projects/list.html" class="menu-link px-5">

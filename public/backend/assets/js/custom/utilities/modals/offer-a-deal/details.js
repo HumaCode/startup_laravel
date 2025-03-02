@@ -10,7 +10,7 @@ var KTModalOfferADealDetails = function () {
 	var stepper;
 
 	// Private functions
-	var initForm = function() {
+	var initForm = function () {
 		// Due date. For more info, please visit the official plugin site: https://flatpickr.js.org/
 		var dueDate = $(form.querySelector('[name="details_activation_date"]'));
 		dueDate.flatpickr({
@@ -19,13 +19,13 @@ var KTModalOfferADealDetails = function () {
 		});
 
 		// Expiry year. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="details_customer"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validator.revalidateField('details_customer');
-        });
+		$(form.querySelector('[name="details_customer"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validator.revalidateField('details_customer');
+		});
 	}
 
-	var initValidation = function() {
+	var initValidation = function () {
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
 		validator = FormValidation.formValidation(
 			form,
@@ -44,7 +44,7 @@ var KTModalOfferADealDetails = function () {
 								message: 'Deal title is required'
 							}
 						}
-					},					
+					},
 					'details_activation_date': {
 						validators: {
 							notEmpty: {
@@ -60,20 +60,20 @@ var KTModalOfferADealDetails = function () {
 						}
 					}
 				},
-				
+
 				plugins: {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
 		);
 	}
 
-	var handleForm = function() {
+	var handleForm = function () {
 		nextButton.addEventListener('click', function (e) {
 			// Prevent default button action
 			e.preventDefault();
@@ -91,33 +91,33 @@ var KTModalOfferADealDetails = function () {
 						nextButton.setAttribute('data-kt-indicator', 'on');
 
 						// Simulate form submission
-						setTimeout(function() {
+						setTimeout(function () {
 							// Simulate form submission
 							nextButton.removeAttribute('data-kt-indicator');
 
 							// Enable button
 							nextButton.disabled = false;
-							
+
 							// Go to next step
 							stepper.goNext();
-						}, 1500);   						
+						}, 1500);
 					} else {
 						// Enable button
 						nextButton.disabled = false;
-						
+
 						// Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}
 						});
 					}
 				});
-			}			
+			}
 		});
 
 		previousButton.addEventListener('click', function () {

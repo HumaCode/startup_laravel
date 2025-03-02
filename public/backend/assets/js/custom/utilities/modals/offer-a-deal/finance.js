@@ -10,7 +10,7 @@ var KTModalOfferADealFinance = function () {
 	var stepper;
 
 	// Private functions
-	var initValidation = function() {
+	var initValidation = function () {
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
 		validator = FormValidation.formValidation(
 			form,
@@ -23,9 +23,9 @@ var KTModalOfferADealFinance = function () {
 							},
 							callback: {
 								message: 'The amount must be greater than $100',
-								callback: function(input) {
+								callback: function (input) {
 									var currency = input.value;
-									currency = currency.replace(/[$,]+/g,"");
+									currency = currency.replace(/[$,]+/g, "");
 
 									if (parseFloat(currency) < 100) {
 										return false;
@@ -49,26 +49,26 @@ var KTModalOfferADealFinance = function () {
 						}
 					}
 				},
-				
+
 				plugins: {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
 		);
 
 		// Revalidate on change
-		KTDialer.getInstance(form.querySelector('#kt_modal_finance_setup')).on('kt.dialer.changed', function() {
+		KTDialer.getInstance(form.querySelector('#kt_modal_finance_setup')).on('kt.dialer.changed', function () {
 			// Revalidate the field when an option is chosen
-            validator.revalidateField('finance_setup');
+			validator.revalidateField('finance_setup');
 		});
 	}
 
-	var handleForm = function() {
+	var handleForm = function () {
 		nextButton.addEventListener('click', function (e) {
 			// Prevent default button action
 			e.preventDefault();
@@ -86,33 +86,33 @@ var KTModalOfferADealFinance = function () {
 						nextButton.setAttribute('data-kt-indicator', 'on');
 
 						// Simulate form submission
-						setTimeout(function() {
+						setTimeout(function () {
 							// Simulate form submission
 							nextButton.removeAttribute('data-kt-indicator');
 
 							// Enable button
 							nextButton.disabled = false;
-							
+
 							// Go to next step
 							stepper.goNext();
-						}, 1500);   						
+						}, 1500);
 					} else {
 						// Enable button
 						nextButton.disabled = false;
 
 						// Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}
 						});
 					}
 				});
-			}			
+			}
 		});
 
 		previousButton.addEventListener('click', function () {

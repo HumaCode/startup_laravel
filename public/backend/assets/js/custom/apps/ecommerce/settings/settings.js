@@ -20,7 +20,7 @@ var KTAppEcommerceSettings = function () {
             // Select form
             const form = document.getElementById(formId);
 
-            if(!form){
+            if (!form) {
                 return;
             }
 
@@ -105,7 +105,7 @@ var KTAppEcommerceSettings = function () {
                                     text: "Form has been successfully submitted!",
                                     icon: "success",
                                     buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
+                                    confirmButtonText: "Oke.",
                                     customClass: {
                                         confirmButton: "btn btn-primary"
                                     }
@@ -119,7 +119,7 @@ var KTAppEcommerceSettings = function () {
                                 text: "Oops! There are some error(s) detected.",
                                 icon: "error",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Oke.",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -146,7 +146,7 @@ var KTAppEcommerceSettings = function () {
     const initSelect2Flags = () => {
         // Format options
         const optionFormat = (item) => {
-            if ( !item.id ) {
+            if (!item.id) {
                 return item.text;
             }
 

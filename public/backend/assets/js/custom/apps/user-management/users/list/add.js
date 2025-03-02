@@ -72,7 +72,7 @@ var KTUsersAddUser = function () {
                                 text: "Form has been successfully submitted!",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Oke.",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -87,10 +87,10 @@ var KTUsersAddUser = function () {
                     } else {
                         // Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                         Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
@@ -119,13 +119,13 @@ var KTUsersAddUser = function () {
             }).then(function (result) {
                 if (result.value) {
                     form.reset(); // Reset form			
-                    modal.hide();	
+                    modal.hide();
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -153,13 +153,13 @@ var KTUsersAddUser = function () {
             }).then(function (result) {
                 if (result.value) {
                     form.reset(); // Reset form			
-                    modal.hide();	
+                    modal.hide();
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }

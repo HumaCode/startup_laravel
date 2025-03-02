@@ -10,16 +10,16 @@ var KTModalNewAddress = function () {
 	var modalEl;
 
 	// Init form inputs
-	var initForm = function() {
+	var initForm = function () {
 		// Team assign. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="country"]')).select2().on('change', function() {
-            // Revalidate the field when an option is chosen
-            validator.revalidateField('country');
-        });
+		$(form.querySelector('[name="country"]')).select2().on('change', function () {
+			// Revalidate the field when an option is chosen
+			validator.revalidateField('country');
+		});
 	}
 
 	// Handle form validation and submittion
-	var handleForm = function() {
+	var handleForm = function () {
 		// Stepper custom navigation
 
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
@@ -88,8 +88,8 @@ var KTModalNewAddress = function () {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -111,18 +111,18 @@ var KTModalNewAddress = function () {
 						submitButton.disabled = true;
 
 						// Simulate ajax process
-						setTimeout(function() {
+						setTimeout(function () {
 							submitButton.removeAttribute('data-kt-indicator');
 
 							// Enable button
 							submitButton.disabled = false;
-							
+
 							// Show success message.  For more info check the plugin's official documentation: https://sweetalert2.github.io/
 							Swal.fire({
 								text: "Form has been successfully submitted!",
 								icon: "success",
 								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
+								confirmButtonText: "Oke.",
 								customClass: {
 									confirmButton: "btn btn-primary"
 								}
@@ -133,14 +133,14 @@ var KTModalNewAddress = function () {
 							});
 
 							//form.submit(); // Submit form
-						}, 2000);   						
+						}, 2000);
 					} else {
 						// Show error message.
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}
@@ -173,7 +173,7 @@ var KTModalNewAddress = function () {
 						text: "Your form has not been cancelled!.",
 						icon: "error",
 						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
+						confirmButtonText: "Oke.",
 						customClass: {
 							confirmButton: "btn btn-primary",
 						}

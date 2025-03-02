@@ -8,7 +8,7 @@ var KTUsersAddSchedule = function () {
     const modal = new bootstrap.Modal(element);
 
     // Init add schedule modal
-    var initAddSchedule = () => {       
+    var initAddSchedule = () => {
 
         // Init flatpickr -- for more info: https://flatpickr.js.org/
         $("#kt_modal_add_schedule_datepicker").flatpickr({
@@ -30,50 +30,50 @@ var KTUsersAddSchedule = function () {
         });
 
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-		var validator = FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					'event_datetime': {
-						validators: {
-							notEmpty: {
-								message: 'Event date & time is required'
-							}
-						}
-					},
+        var validator = FormValidation.formValidation(
+            form,
+            {
+                fields: {
+                    'event_datetime': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Event date & time is required'
+                            }
+                        }
+                    },
                     'event_name': {
-						validators: {
-							notEmpty: {
-								message: 'Event name is required'
-							}
-						}
-					},
+                        validators: {
+                            notEmpty: {
+                                message: 'Event name is required'
+                            }
+                        }
+                    },
                     'event_org': {
-						validators: {
-							notEmpty: {
-								message: 'Event organiser is required'
-							}
-						}
-					},
+                        validators: {
+                            notEmpty: {
+                                message: 'Event organiser is required'
+                            }
+                        }
+                    },
                     'event_invitees': {
-						validators: {
-							notEmpty: {
-								message: 'Event invitees is required'
-							}
-						}
-					},					
-				},
-				
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap5({
-						rowSelector: '.fv-row',
+                        validators: {
+                            notEmpty: {
+                                message: 'Event invitees is required'
+                            }
+                        }
+                    },
+                },
+
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: '.fv-row',
                         eleInvalidClass: '',
                         eleValidClass: ''
-					})
-				}
-			}
-		);
+                    })
+                }
+            }
+        );
 
         // Revalidate country field. For more info, plase visit the official plugin site: https://select2.org/
         $(form.querySelector('[name="event_invitees"]')).on('change', function () {
@@ -106,7 +106,7 @@ var KTUsersAddSchedule = function () {
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -140,7 +140,7 @@ var KTUsersAddSchedule = function () {
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -151,62 +151,62 @@ var KTUsersAddSchedule = function () {
 
         // Submit button handler
         const submitButton = element.querySelector('[data-kt-users-modal-action="submit"]');
-		submitButton.addEventListener('click', function (e) {
-			// Prevent default button action
-			e.preventDefault();
+        submitButton.addEventListener('click', function (e) {
+            // Prevent default button action
+            e.preventDefault();
 
-			// Validate form before submit
-			if (validator) {
-				validator.validate().then(function (status) {
-					console.log('validated!');
+            // Validate form before submit
+            if (validator) {
+                validator.validate().then(function (status) {
+                    console.log('validated!');
 
-					if (status == 'Valid') {
-						// Show loading indication
-						submitButton.setAttribute('data-kt-indicator', 'on');
+                    if (status == 'Valid') {
+                        // Show loading indication
+                        submitButton.setAttribute('data-kt-indicator', 'on');
 
-						// Disable button to avoid multiple click 
-						submitButton.disabled = true;
+                        // Disable button to avoid multiple click 
+                        submitButton.disabled = true;
 
-						// Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-						setTimeout(function() {
-							// Remove loading indication
-							submitButton.removeAttribute('data-kt-indicator');
+                        // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                        setTimeout(function () {
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
 
-							// Enable button
-							submitButton.disabled = false;
-							
-							// Show popup confirmation 
-							Swal.fire({
-								text: "Form has been successfully submitted!",
-								icon: "success",
-								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
-								customClass: {
-									confirmButton: "btn btn-primary"
-								}
-							}).then(function (result) {
-								if (result.isConfirmed) {
-									modal.hide();
-								}
-							});
+                            // Enable button
+                            submitButton.disabled = false;
 
-							//form.submit(); // Submit form
-						}, 2000);   						
-					} else {
-						// Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
-							icon: "error",
-							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn btn-primary"
-							}
-						});
-					}
-				});
-			}
-		});
+                            // Show popup confirmation 
+                            Swal.fire({
+                                text: "Form has been successfully submitted!",
+                                icon: "success",
+                                buttonsStyling: false,
+                                confirmButtonText: "Oke.",
+                                customClass: {
+                                    confirmButton: "btn btn-primary"
+                                }
+                            }).then(function (result) {
+                                if (result.isConfirmed) {
+                                    modal.hide();
+                                }
+                            });
+
+                            //form.submit(); // Submit form
+                        }, 2000);
+                    } else {
+                        // Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                        Swal.fire({
+                            text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Oke.",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
     return {

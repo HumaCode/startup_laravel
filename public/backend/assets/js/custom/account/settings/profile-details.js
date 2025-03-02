@@ -85,17 +85,17 @@ var KTAccountSettingsProfileDetails = function () {
         );
 
         // Select2 validation integration
-        $(form.querySelector('[name="country"]')).on('change', function() {
+        $(form.querySelector('[name="country"]')).on('change', function () {
             // Revalidate the color field when an option is chosen
             validation.revalidateField('country');
         });
 
-        $(form.querySelector('[name="language"]')).on('change', function() {
+        $(form.querySelector('[name="language"]')).on('change', function () {
             // Revalidate the color field when an option is chosen
             validation.revalidateField('language');
         });
 
-        $(form.querySelector('[name="timezone"]')).on('change', function() {
+        $(form.querySelector('[name="timezone"]')).on('change', function () {
             // Revalidate the color field when an option is chosen
             validation.revalidateField('timezone');
         });
@@ -112,7 +112,7 @@ var KTAccountSettingsProfileDetails = function () {
                         text: "Thank you! You've updated your basic info",
                         icon: "success",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn fw-bold btn-light-primary"
                         }
@@ -120,10 +120,10 @@ var KTAccountSettingsProfileDetails = function () {
 
                 } else {
                     swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn fw-bold btn-light-primary"
                         }
@@ -137,7 +137,7 @@ var KTAccountSettingsProfileDetails = function () {
     return {
         init: function () {
             form = document.getElementById('kt_account_profile_details_form');
-            
+
             if (!form) {
                 return;
             }
@@ -150,6 +150,6 @@ var KTAccountSettingsProfileDetails = function () {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+KTUtil.onDOMContentLoaded(function () {
     KTAccountSettingsProfileDetails.init();
 });

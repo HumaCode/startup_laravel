@@ -7,12 +7,12 @@ var KTCareersApply = function () {
 	var form;
 
 	// Init form inputs
-	var initForm = function() {
+	var initForm = function () {
 		// Team assign. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="position"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validator.revalidateField('position');
-        });
+		$(form.querySelector('[name="position"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validator.revalidateField('position');
+		});
 
 		// Start date. For more info, please visit the official plugin site: https://flatpickr.js.org/
 		var startDate = $(form.querySelector('[name="start_date"]'));
@@ -23,7 +23,7 @@ var KTCareersApply = function () {
 	}
 
 	// Handle form validation and submittion
-	var handleForm = function() {
+	var handleForm = function () {
 		// Stepper custom navigation
 
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
@@ -46,26 +46,26 @@ var KTCareersApply = function () {
 						}
 					},
 					'age': {
-                        validators: {
+						validators: {
 							notEmpty: {
 								message: 'Age is required'
 							}
 						}
 					},
 					'city': {
-                        validators: {
+						validators: {
 							notEmpty: {
 								message: 'City is required'
 							}
 						}
 					},
 					'email': {
-                        validators: {
+						validators: {
 							notEmpty: {
 								message: 'Email address is required'
 							},
-                            emailAddress: {
-								message: 'The value is not a valid email address'
+							emailAddress: {
+								message: 'Email tidak valid !!'
 							}
 						}
 					},
@@ -95,8 +95,8 @@ var KTCareersApply = function () {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -117,17 +117,17 @@ var KTCareersApply = function () {
 						// Disable button to avoid multiple click 
 						submitButton.disabled = true;
 
-						setTimeout(function() {
+						setTimeout(function () {
 							submitButton.removeAttribute('data-kt-indicator');
 
 							// Enable button
 							submitButton.disabled = false;
-							
+
 							Swal.fire({
 								text: "Form has been successfully submitted!",
 								icon: "success",
 								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
+								confirmButtonText: "Oke.",
 								customClass: {
 									confirmButton: "btn btn-primary"
 								}
@@ -138,16 +138,16 @@ var KTCareersApply = function () {
 							});
 
 							//form.submit(); // Submit form
-						}, 2000);   						
+						}, 2000);
 					} else {
 						// Scroll top
 
 						// Show error popuo. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}

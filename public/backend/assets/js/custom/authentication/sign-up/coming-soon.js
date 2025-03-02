@@ -1,51 +1,51 @@
 "use strict";
 
 // Class Definition
-var KTSignupComingSoon = function() {
+var KTSignupComingSoon = function () {
     // Elements
     var form;
     var submitButton;
-	var validator; 
+    var validator;
 
     var counterDays;
     var counterHours;
     var counterMinutes;
     var counterSeconds;
 
-    var handleForm = function(e) {
-        var validation;		 
+    var handleForm = function (e) {
+        var validation;
 
-        if( !form ) {
+        if (!form) {
             return;
-        }        
+        }
 
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
         validator = FormValidation.formValidation(
-			form,
-			{
-				fields: {					
-					'email': {
+            form,
+            {
+                fields: {
+                    'email': {
                         validators: {
                             regexp: {
                                 regexp: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                message: 'The value is not a valid email address',
+                                message: 'Email tidak valid !!',
                             },
-							notEmpty: {
-								message: 'Email address is required'
-							}
-						}
-					} 
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap5({
+                            notEmpty: {
+                                message: 'Email address is required'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
                         rowSelector: '.fv-row',
                         eleInvalidClass: '',
                         eleValidClass: ''
                     })
-				}
-			}
-		);		
+                }
+            }
+        );
 
         submitButton.addEventListener('click', function (e) {
             e.preventDefault();
@@ -60,7 +60,7 @@ var KTSignupComingSoon = function() {
                     submitButton.disabled = true;
 
                     // Simulate ajax request
-                    setTimeout(function() {
+                    setTimeout(function () {
                         // Hide loading indication
                         submitButton.removeAttribute('data-kt-indicator');
 
@@ -72,13 +72,13 @@ var KTSignupComingSoon = function() {
                             text: "We have received your request. You will be notified once we go live.",
                             icon: "success",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
                         }).then(function (result) {
-                            if (result.isConfirmed) { 
-                                form.querySelector('[name="email"]').value= "";                            
+                            if (result.isConfirmed) {
+                                form.querySelector('[name="email"]').value = "";
                                 //form.submit();
 
                                 //form.submit(); // submit form
@@ -88,29 +88,29 @@ var KTSignupComingSoon = function() {
                                 }
                             }
                         });
-                    }, 2000);   						
+                    }, 2000);
                 } else {
                     // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                     Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary"
                         }
                     });
                 }
             });
-		});
+        });
     }
 
-    var initCounter = function() {
+    var initCounter = function () {
         // Set the date we're counting down to
-        var currentTime = new Date(); 
+        var currentTime = new Date();
         var countDownDate = new Date(currentTime.getTime() + 1000 * 60 * 60 * 24 * 15 + 1000 * 60 * 60 * 10 + 1000 * 60 * 15).getTime();
 
-        var count = function() {
+        var count = function () {
             // Get todays date and time
             var now = new Date().getTime();
 
@@ -124,10 +124,10 @@ var KTSignupComingSoon = function() {
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Display the result
-            if(counterDays) counterDays.innerHTML = days; 
-            if(counterHours) counterHours.innerHTML = hours;
-            if(counterMinutes) counterMinutes.innerHTML = minutes;
-            if(counterSeconds) counterSeconds.innerHTML = seconds;
+            if (counterDays) counterDays.innerHTML = days;
+            if (counterHours) counterHours.innerHTML = hours;
+            if (counterMinutes) counterMinutes.innerHTML = minutes;
+            if (counterSeconds) counterSeconds.innerHTML = seconds;
         };
 
         // Update the count down every 1 second
@@ -140,18 +140,18 @@ var KTSignupComingSoon = function() {
     // Public Functions
     return {
         // public functions
-        init: function() {
+        init: function () {
             form = document.querySelector('#kt_coming_soon_form');
             submitButton = document.querySelector('#kt_coming_soon_submit');
-           
+
             handleForm();
 
             counterDays = document.querySelector('#kt_coming_soon_counter_days');
-            if (counterDays) {                
+            if (counterDays) {
                 counterHours = document.querySelector('#kt_coming_soon_counter_hours');
                 counterMinutes = document.querySelector('#kt_coming_soon_counter_minutes');
                 counterSeconds = document.querySelector('#kt_coming_soon_counter_seconds');
-                
+
                 initCounter();
             }
         }
@@ -159,6 +159,6 @@ var KTSignupComingSoon = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+KTUtil.onDOMContentLoaded(function () {
     KTSignupComingSoon.init();
 });

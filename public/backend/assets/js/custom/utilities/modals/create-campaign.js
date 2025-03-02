@@ -54,10 +54,10 @@ var KTCreateCampaign = function () {
 					} else {
 						// Show error message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-light"
 							}
@@ -228,7 +228,7 @@ var KTCreateCampaign = function () {
 			maxFiles: 10,
 			maxFilesize: 10, // MB
 			addRemoveLinks: true,
-			accept: function(file, done) {
+			accept: function (file, done) {
 				if (file.name == "wow.jpg") {
 					done("Naha, you don't.");
 				} else {

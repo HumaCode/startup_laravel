@@ -3,7 +3,7 @@
 // Class definition
 var KTCreateAccount = function () {
 	// Elements
-	var modal;	
+	var modal;
 	var modalEl;
 
 	var stepper;
@@ -53,10 +53,10 @@ var KTCreateAccount = function () {
 						KTUtil.scrollTop();
 					} else {
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-light"
 							}
@@ -81,7 +81,7 @@ var KTCreateAccount = function () {
 		});
 	}
 
-	var handleForm = function() {
+	var handleForm = function () {
 		formSubmitButton.addEventListener('click', function (e) {
 			// Validate form before change stepper step
 			var validator = validations[3]; // get validator for last form
@@ -100,7 +100,7 @@ var KTCreateAccount = function () {
 					formSubmitButton.setAttribute('data-kt-indicator', 'on');
 
 					// Simulate form submission
-					setTimeout(function() {
+					setTimeout(function () {
 						// Hide loading indication
 						formSubmitButton.removeAttribute('data-kt-indicator');
 
@@ -111,10 +111,10 @@ var KTCreateAccount = function () {
 					}, 2000);
 				} else {
 					Swal.fire({
-						text: "Sorry, looks like there are some errors detected, please try again.",
+						text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 						icon: "error",
 						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
+						confirmButtonText: "Oke.",
 						customClass: {
 							confirmButton: "btn btn-light"
 						}
@@ -126,22 +126,22 @@ var KTCreateAccount = function () {
 		});
 
 		// Expiry month. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="card_expiry_month"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validations[3].revalidateField('card_expiry_month');
-        });
+		$(form.querySelector('[name="card_expiry_month"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validations[3].revalidateField('card_expiry_month');
+		});
 
 		// Expiry year. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="card_expiry_year"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validations[3].revalidateField('card_expiry_year');
-        });
+		$(form.querySelector('[name="card_expiry_year"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validations[3].revalidateField('card_expiry_year');
+		});
 
 		// Expiry year. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="business_type"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validations[2].revalidateField('business_type');
-        });
+		$(form.querySelector('[name="business_type"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validations[2].revalidateField('business_type');
+		});
 	}
 
 	var initValidation = function () {
@@ -163,8 +163,8 @@ var KTCreateAccount = function () {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -202,8 +202,8 @@ var KTCreateAccount = function () {
 					// Bootstrap Framework Integration
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -241,7 +241,7 @@ var KTCreateAccount = function () {
 								message: 'Busines email is required'
 							},
 							emailAddress: {
-								message: 'The value is not a valid email address'
+								message: 'Email tidak valid !!'
 							}
 						}
 					}
@@ -251,8 +251,8 @@ var KTCreateAccount = function () {
 					// Bootstrap Framework Integration
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -275,9 +275,9 @@ var KTCreateAccount = function () {
 							notEmpty: {
 								message: 'Card member is required'
 							},
-                            creditCard: {
-                                message: 'Card number is not valid'
-                            }
+							creditCard: {
+								message: 'Card number is not valid'
+							}
 						}
 					},
 					'card_expiry_month': {
@@ -316,8 +316,8 @@ var KTCreateAccount = function () {
 					// Bootstrap Framework Integration
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -330,13 +330,13 @@ var KTCreateAccount = function () {
 			// Elements
 			modalEl = document.querySelector('#kt_modal_create_account');
 
-			if ( modalEl ) {
-				modal = new bootstrap.Modal(modalEl);	
-			}					
+			if (modalEl) {
+				modal = new bootstrap.Modal(modalEl);
+			}
 
 			stepper = document.querySelector('#kt_create_account_stepper');
 
-			if ( !stepper ) {
+			if (!stepper) {
 				return;
 			}
 
@@ -352,6 +352,6 @@ var KTCreateAccount = function () {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
-    KTCreateAccount.init();
+KTUtil.onDOMContentLoaded(function () {
+	KTCreateAccount.init();
 });

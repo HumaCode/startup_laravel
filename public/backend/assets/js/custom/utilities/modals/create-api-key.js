@@ -10,16 +10,16 @@ var KTModalCreateApiKey = function () {
 	var modalEl;
 
 	// Init form inputs
-	var initForm = function() {
+	var initForm = function () {
 		// Team assign. For more info, plase visit the official plugin site: https://select2.org/
-        $(form.querySelector('[name="category"]')).on('change', function() {
-            // Revalidate the field when an option is chosen
-            validator.revalidateField('category');
-        });
+		$(form.querySelector('[name="category"]')).on('change', function () {
+			// Revalidate the field when an option is chosen
+			validator.revalidateField('category');
+		});
 	}
 
 	// Handle form validation and submittion
-	var handleForm = function() {
+	var handleForm = function () {
 		// Stepper custom navigation
 
 		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
@@ -60,8 +60,8 @@ var KTModalCreateApiKey = function () {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -82,17 +82,17 @@ var KTModalCreateApiKey = function () {
 						// Disable button to avoid multiple click 
 						submitButton.disabled = true;
 
-						setTimeout(function() {
+						setTimeout(function () {
 							submitButton.removeAttribute('data-kt-indicator');
 
 							// Enable button
 							submitButton.disabled = false;
-							
+
 							Swal.fire({
 								text: "Form has been successfully submitted!",
 								icon: "success",
 								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
+								confirmButtonText: "Oke.",
 								customClass: {
 									confirmButton: "btn btn-primary"
 								}
@@ -103,14 +103,14 @@ var KTModalCreateApiKey = function () {
 							});
 
 							//form.submit(); // Submit form
-						}, 2000);   						
+						}, 2000);
 					} else {
 						// Show error popuo. For more info check the plugin's official documentation: https://sweetalert2.github.io/
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}
@@ -145,7 +145,7 @@ var KTModalCreateApiKey = function () {
 						text: "Your form has not been cancelled!.",
 						icon: "error",
 						buttonsStyling: false,
-						confirmButtonText: "Ok, got it!",
+						confirmButtonText: "Oke.",
 						customClass: {
 							confirmButton: "btn btn-primary",
 						}

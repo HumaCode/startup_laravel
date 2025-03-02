@@ -2,18 +2,18 @@
 
 // Class definition
 var KTEcommerceUpdateProfile = function () {
-    var submitButton;
-    var validator;
-    var form;
+	var submitButton;
+	var validator;
+	var form;
 
-    // Init form inputs
-    var handleForm = function () {
-        // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+	// Init form inputs
+	var handleForm = function () {
+		// Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
 		validator = FormValidation.formValidation(
 			form,
 			{
 				fields: {
-                    'name': {
+					'name': {
 						validators: {
 							notEmpty: {
 								message: 'Name is required'
@@ -32,8 +32,8 @@ var KTEcommerceUpdateProfile = function () {
 					trigger: new FormValidation.plugins.Trigger(),
 					bootstrap: new FormValidation.plugins.Bootstrap5({
 						rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
+						eleInvalidClass: '',
+						eleValidClass: ''
 					})
 				}
 			}
@@ -54,14 +54,14 @@ var KTEcommerceUpdateProfile = function () {
 						// Disable submit button whilst loading
 						submitButton.disabled = true;
 
-						setTimeout(function() {
+						setTimeout(function () {
 							submitButton.removeAttribute('data-kt-indicator');
-							
+
 							Swal.fire({
 								text: "Your profile has been saved!",
 								icon: "success",
 								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
+								confirmButtonText: "Oke.",
 								customClass: {
 									confirmButton: "btn btn-primary"
 								}
@@ -70,14 +70,14 @@ var KTEcommerceUpdateProfile = function () {
 									// Enable submit button after loading
 									submitButton.disabled = false;
 								}
-							});							
-						}, 2000);   						
+							});
+						}, 2000);
 					} else {
 						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
+							text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
 							icon: "error",
 							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
+							confirmButtonText: "Oke.",
 							customClass: {
 								confirmButton: "btn btn-primary"
 							}
@@ -86,18 +86,18 @@ var KTEcommerceUpdateProfile = function () {
 				});
 			}
 		});
-    }
+	}
 
-    return {
-        // Public functions
-        init: function () {
-            // Elements
-            form = document.querySelector('#kt_ecommerce_customer_profile');
-            submitButton = form.querySelector('#kt_ecommerce_customer_profile_submit');
+	return {
+		// Public functions
+		init: function () {
+			// Elements
+			form = document.querySelector('#kt_ecommerce_customer_profile');
+			submitButton = form.querySelector('#kt_ecommerce_customer_profile_submit');
 
-            handleForm();
-        }
-    };
+			handleForm();
+		}
+	};
 }();
 
 // On document ready

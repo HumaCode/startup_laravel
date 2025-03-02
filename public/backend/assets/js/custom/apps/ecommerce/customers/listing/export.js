@@ -5,7 +5,7 @@ var KTCustomersExport = function () {
     var element;
     var submitButton;
     var cancelButton;
-	var closeButton;
+    var closeButton;
     var validator;
     var form;
     var modal;
@@ -13,80 +13,80 @@ var KTCustomersExport = function () {
     // Init form inputs
     var handleForm = function () {
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-		validator = FormValidation.formValidation(
-			form,
-			{
-				fields: {
+        validator = FormValidation.formValidation(
+            form,
+            {
+                fields: {
                     'date': {
-						validators: {
-							notEmpty: {
-								message: 'Date range is required'
-							}
-						}
-					},
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap5({
-						rowSelector: '.fv-row',
+                        validators: {
+                            notEmpty: {
+                                message: 'Date range is required'
+                            }
+                        }
+                    },
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: '.fv-row',
                         eleInvalidClass: '',
                         eleValidClass: ''
-					})
-				}
-			}
-		);
+                    })
+                }
+            }
+        );
 
-		// Action buttons
-		submitButton.addEventListener('click', function (e) {
-			e.preventDefault();      
+        // Action buttons
+        submitButton.addEventListener('click', function (e) {
+            e.preventDefault();
 
-			// Validate form before submit
-			if (validator) {
-				validator.validate().then(function (status) {
-					console.log('validated!');
+            // Validate form before submit
+            if (validator) {
+                validator.validate().then(function (status) {
+                    console.log('validated!');
 
-					if (status == 'Valid') {
-						submitButton.setAttribute('data-kt-indicator', 'on');
+                    if (status == 'Valid') {
+                        submitButton.setAttribute('data-kt-indicator', 'on');
 
                         // Disable submit button whilst loading
                         submitButton.disabled = true;
 
-						setTimeout(function() {
-							submitButton.removeAttribute('data-kt-indicator');
-							
-							Swal.fire({
-								text: "Customer list has been successfully exported!",
-								icon: "success",
-								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
-								customClass: {
-									confirmButton: "btn btn-primary"
-								}
-							}).then(function (result) {
-								if (result.isConfirmed) {
-									modal.hide();
+                        setTimeout(function () {
+                            submitButton.removeAttribute('data-kt-indicator');
+
+                            Swal.fire({
+                                text: "Customer list has been successfully exported!",
+                                icon: "success",
+                                buttonsStyling: false,
+                                confirmButtonText: "Oke.",
+                                customClass: {
+                                    confirmButton: "btn btn-primary"
+                                }
+                            }).then(function (result) {
+                                if (result.isConfirmed) {
+                                    modal.hide();
 
                                     // Enable submit button after loading
-                                    submitButton.disabled = false;        
-								}
-							});
+                                    submitButton.disabled = false;
+                                }
+                            });
 
-							//form.submit(); // Submit form
-						}, 2000);   						
-					} else {
-						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
-							icon: "error",
-							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn btn-primary"
-							}
-						});
-					}
-				});
-			}
-		});
+                            //form.submit(); // Submit form
+                        }, 2000);
+                    } else {
+                        Swal.fire({
+                            text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Oke.",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                });
+            }
+        });
 
         cancelButton.addEventListener('click', function (e) {
             e.preventDefault();
@@ -111,7 +111,7 @@ var KTCustomersExport = function () {
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
@@ -120,8 +120,8 @@ var KTCustomersExport = function () {
             });
         });
 
-		closeButton.addEventListener('click', function(e){
-			e.preventDefault();
+        closeButton.addEventListener('click', function (e) {
+            e.preventDefault();
 
             Swal.fire({
                 text: "Are you sure you would like to cancel?",
@@ -143,19 +143,19 @@ var KTCustomersExport = function () {
                         text: "Your form has not been cancelled!.",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn btn-primary",
                         }
                     });
                 }
             });
-		});
+        });
     }
 
     var initForm = function () {
         const datepicker = form.querySelector("[name=date]");
-        
+
         // Handle datepicker range -- For more info on flatpickr plugin, please visit: https://flatpickr.js.org/
         $(datepicker).flatpickr({
             altInput: true,
@@ -175,7 +175,7 @@ var KTCustomersExport = function () {
             form = document.querySelector('#kt_customers_export_form');
             submitButton = form.querySelector('#kt_customers_export_submit');
             cancelButton = form.querySelector('#kt_customers_export_cancel');
-			closeButton = element.querySelector('#kt_customers_export_close');
+            closeButton = element.querySelector('#kt_customers_export_close');
 
             handleForm();
             initForm();

@@ -90,7 +90,7 @@ var KTAppContactEdit = function () {
                                 text: "Form has been successfully submitted!",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Oke.",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -104,7 +104,7 @@ var KTAppContactEdit = function () {
                             text: "Oops! There are some error(s) detected.",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
@@ -118,8 +118,8 @@ var KTAppContactEdit = function () {
     // Init Select2 with flags
     const initSelect2Flags = () => {
         // Format options
-        var optionFormat = function(item) {
-            if ( !item.id ) {
+        var optionFormat = function (item) {
+            if (!item.id) {
                 return item.text;
             }
 

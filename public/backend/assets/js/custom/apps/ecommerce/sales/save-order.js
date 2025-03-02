@@ -18,7 +18,7 @@ var KTAppEcommerceSalesSaveOrder = function () {
         // Init select2 country options
         // Format options
         const optionFormat = (item) => {
-            if ( !item.id ) {
+            if (!item.id) {
                 return item.text;
             }
 
@@ -98,13 +98,13 @@ var KTAppEcommerceSalesSaveOrder = function () {
             checkbox.addEventListener('change', e => {
                 // Select parent row element
                 const parent = checkbox.closest('tr');
-                
+
                 // Clone parent element as variable
                 const product = parent.querySelector('[data-kt-ecommerce-edit-order-filter="product"]').cloneNode(true);
 
                 // Create inner wrapper
                 const innerWrapper = document.createElement('div');
-                
+
                 // Store inner content
                 const innerContent = product.innerHTML;
 
@@ -124,7 +124,7 @@ var KTAppEcommerceSalesSaveOrder = function () {
 
                 // Update inner wrapper classes
                 innerWrapper.classList.add(...wrapperClassesRemove);
-                innerWrapper.classList.add(...additionalClasses);                
+                innerWrapper.classList.add(...additionalClasses);
 
                 // Apply stored inner content into new inner wrapper
                 innerWrapper.innerHTML = innerContent;
@@ -288,7 +288,7 @@ var KTAppEcommerceSalesSaveOrder = function () {
                                 text: "Form has been successfully submitted!",
                                 icon: "success",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
+                                confirmButtonText: "Oke.",
                                 customClass: {
                                     confirmButton: "btn btn-primary"
                                 }
@@ -304,10 +304,10 @@ var KTAppEcommerceSalesSaveOrder = function () {
                         }, 2000);
                     } else {
                         Swal.fire({
-                            html: "Sorry, looks like there are some errors detected, please try again.",
+                            html: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
+                            confirmButtonText: "Oke.",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }

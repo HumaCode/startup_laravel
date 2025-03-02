@@ -25,10 +25,10 @@ var KTAccountSettingsSigninMethods = function () {
     }
 
     // Private functions
-    var initSettings = function () {  
+    var initSettings = function () {
         if (!signInMainEl) {
             return;
-        }        
+        }
 
         // toggle UI
         signInChangeEmail.querySelector('button').addEventListener('click', function () {
@@ -49,7 +49,7 @@ var KTAccountSettingsSigninMethods = function () {
     }
 
     var handleChangeEmail = function (e) {
-        var validation;        
+        var validation;
 
         if (!signInForm) {
             return;
@@ -65,7 +65,7 @@ var KTAccountSettingsSigninMethods = function () {
                                 message: 'Email is required'
                             },
                             emailAddress: {
-                                message: 'The value is not a valid email address'
+                                message: 'Email tidak valid !!'
                             }
                         }
                     },
@@ -98,21 +98,21 @@ var KTAccountSettingsSigninMethods = function () {
                         text: "Sent password reset. Please check your email",
                         icon: "success",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn font-weight-bold btn-light-primary"
                         }
-                    }).then(function(){
+                    }).then(function () {
                         signInForm.reset();
                         validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
                         toggleChangeEmail();
                     });
                 } else {
                     swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn font-weight-bold btn-light-primary"
                         }
@@ -158,7 +158,7 @@ var KTAccountSettingsSigninMethods = function () {
                                 message: 'Confirm Password is required'
                             },
                             identical: {
-                                compare: function() {
+                                compare: function () {
                                     return passwordForm.querySelector('[name="newpassword"]').value;
                                 },
                                 message: 'The password and its confirm are not the same'
@@ -186,21 +186,21 @@ var KTAccountSettingsSigninMethods = function () {
                         text: "Sent password reset. Please check your email",
                         icon: "success",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn font-weight-bold btn-light-primary"
                         }
-                    }).then(function(){
+                    }).then(function () {
                         passwordForm.reset();
                         validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
                         toggleChangePassword();
                     });
                 } else {
                     swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Maaf , Identitas yang anda masukan salah, coba beberapa saat lagi..",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Oke.",
                         customClass: {
                             confirmButton: "btn font-weight-bold btn-light-primary"
                         }
@@ -231,6 +231,6 @@ var KTAccountSettingsSigninMethods = function () {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+KTUtil.onDOMContentLoaded(function () {
     KTAccountSettingsSigninMethods.init();
 });
