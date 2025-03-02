@@ -16,58 +16,59 @@
                 e.preventDefault();
 
                 var formData = new FormData(this);
-                var submitButton = $('#btn-submit-profile'); // Targetkan tombol dengan ID
+                var submitButton = $('#btn-edit-profil'); // Sesuaikan dengan ID tombol yang benar
 
                 // Tambahkan loading state di tombol
                 submitButton.attr('disabled', true).text('Menyimpan...');
 
-                $.ajax({
-                    url: '{{ route('setting.update-data.user', $profil->id) }}',
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        if (response.status === 'success') {
+                // Tambahkan jeda selama 500ms sebelum menjalankan AJAX
+                setTimeout(function() {
+                    $.ajax({
+                        url: '{{ route('setting.update-data.user', $profil->id) }}',
+                        type: 'POST',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire({
+                                    title: 'Berhasil!',
+                                    text: response.message,
+                                    icon: 'success',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Gagal!',
+                                    text: response.message,
+                                    icon: 'error',
+                                });
+                            }
+                        },
+                        error: function(xhr) {
+                            console.log(xhr.responseText); // Debugging
                             Swal.fire({
-                                title: 'Berhasil!',
-                                text: response.message,
-                                icon: 'success',
-                                timer: 1500,
-                                showConfirmButton: false
-                            }).then(() => {
-                                location.reload();
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Gagal!',
-                                text: response.message,
+                                title: 'Error!',
+                                text: 'Terjadi kesalahan: ' + xhr.responseText,
                                 icon: 'error',
                             });
+                        },
+                        complete: function() {
+                            // Aktifkan kembali tombol setelah selesai
+                            submitButton.attr('disabled', false).text('Simpan');
                         }
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText); // Debugging
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'Terjadi kesalahan: ' + xhr.responseText,
-                            icon: 'error',
-                        });
-                    },
-                    complete: function() {
-                        // Aktifkan kembali tombol setelah selesai
-                        submitButton.attr('disabled', false).text('Simpan');
-                    }
-                });
+                    });
+                }, 500); // Jeda 500ms sebelum AJAX dijalankan
             });
 
 
             $(document).on('submit', '#ubah-password-form', function(e) {
                 e.preventDefault();
 
-                var formData = new FormData(this); // Mengambil seluruh data form
-
-                // Tombol submit
+                var formData = new FormData(this);
                 var submitButton = $('#btn-ubah-password');
 
                 // Nonaktifkan tombol saat proses berjalan
@@ -75,67 +76,69 @@
                     '<i class="spinner-border spinner-border-sm"></i> Menyimpan...'
                 );
 
-                $.ajax({
-                    url: '{{ route('setting.update-password.user', $profil->id) }}', // Ganti dengan route untuk mengubah password
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            Swal.fire({
-                                title: 'Berhasil!',
-                                text: response.message,
-                                icon: 'success',
-                                timer: 1500,
-                                showConfirmButton: false
-                            }).then(() => {
-                                // Reload halaman atau reset form jika diperlukan
-                                $('#ubah-password-form')[0].reset();
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Gagal!',
-                                text: response.message,
-                                icon: 'error',
-                            });
-                        }
-                    },
-                    error: function(xhr) {
-                        // Tangani error berdasarkan status HTTP
-                        if (xhr.status === 422) { // Laravel validation error
-                            let errors = xhr.responseJSON.errors;
-                            let errorMessage = '';
-                            for (let field in errors) {
-                                errorMessage += `${errors[field][0]}<br>`;
+                // Tambahkan jeda 500ms sebelum AJAX dijalankan
+                setTimeout(function() {
+                    $.ajax({
+                        url: '{{ route('setting.update-password.user', $profil->id) }}',
+                        type: 'POST',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire({
+                                    title: 'Berhasil!',
+                                    text: response.message,
+                                    icon: 'success',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                }).then(() => {
+                                    $('#ubah-password-form')[0]
+                                .reset(); // Reset form jika berhasil
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Gagal!',
+                                    text: response.message,
+                                    icon: 'error',
+                                });
                             }
-                            Swal.fire({
-                                title: 'Validasi Gagal!',
-                                html: errorMessage,
-                                icon: 'error',
-                            });
-                        } else if (xhr.status === 400) { // Password lama tidak sesuai
-                            let errorMessage = xhr.responseJSON.message || 'Kesalahan tidak diketahui.';
-                            Swal.fire({
-                                title: 'Gagal!',
-                                text: errorMessage,
-                                icon: 'error',
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: 'Terjadi kesalahan pada server.',
-                                icon: 'error',
-                            });
+                        },
+                        error: function(xhr) {
+                            if (xhr.status === 422) { // Laravel validation error
+                                let errors = xhr.responseJSON.errors;
+                                let errorMessage = '';
+                                for (let field in errors) {
+                                    errorMessage += `${errors[field][0]}<br>`;
+                                }
+                                Swal.fire({
+                                    title: 'Validasi Gagal!',
+                                    html: errorMessage,
+                                    icon: 'error',
+                                });
+                            } else if (xhr.status === 400) { // Password lama salah
+                                Swal.fire({
+                                    title: 'Gagal!',
+                                    text: xhr.responseJSON.message ||
+                                        'Password lama tidak sesuai.',
+                                    icon: 'error',
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: 'Terjadi kesalahan pada server.',
+                                    icon: 'error',
+                                });
+                            }
+                        },
+                        complete: function() {
+                            // Aktifkan kembali tombol setelah selesai
+                            submitButton.attr('disabled', false).html(
+                                '<i class="ki-outline ki-send fs-2"></i>&nbsp; Simpan'
+                            );
                         }
-                    },
-                    complete: function() {
-                        // Aktifkan kembali tombol setelah selesai
-                        submitButton.attr('disabled', false).html(
-                            '<i class="ki-outline ki-send fs-2"></i>&nbsp; Simpan'
-                        );
-                    }
-                });
+                    });
+                }, 500); // Jeda 500ms sebelum AJAX dijalankan
             });
         </script>
     @endpush
@@ -436,12 +439,14 @@
                                         class="btn btn-primary hover-scale"><i
                                             class="ki-outline ki-send fs-2"></i>&nbsp; Simpan</button>
                                 </div>
+
                             </div>
                         </form>
 
                     </div>
-
                 </div>
+
+
                 <div class="tab-pane fade" id="kt_tab_pane_5" role="tabpanel">
                     <div class="card-body">
 
